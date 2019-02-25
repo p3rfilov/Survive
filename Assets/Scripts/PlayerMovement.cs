@@ -4,41 +4,40 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float Speed = 5f;
-    public float JumpHeight = 2f;
-    public float GroundDistance = 0.2f;
-    public LayerMask Ground;
+    public float speed = 5f;
+    public float jumpStrength = 5f;
+    public float groundDistance = 0.2f;
+    public LayerMask ground;
 
-    private Rigidbody _body;
-    private Vector3 _inputs = Vector3.zero;
-    private bool _isGrounded = true;
-    private Transform _groundChecker;
-    private Quaternion _angleAdjustment = Quaternion.AngleAxis(45, Vector3.up);
+    private Rigidbody body;
+    private Vector3 inputs = Vector3.zero;
+    private bool isGrounded = true;
+    private Quaternion viewRotation = Quaternion.AngleAxis(45, Vector3.up);
 
     void Start()
     {
-        _body = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        _isGrounded = Physics.CheckSphere(transform.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
+        isGrounded = Physics.CheckSphere(transform.position, groundDistance, ground, QueryTriggerInteraction.Ignore);
 
-        _inputs = Vector3.zero;
-        _inputs.x = Input.GetAxis("Horizontal");
-        _inputs.z = Input.GetAxis("Vertical");
-        if (_inputs != Vector3.zero)
-            transform.forward = _angleAdjustment * _inputs;
-
-        if (Input.GetButtonDown("Jump") && _isGrounded)
+        inputs = Vector3.zero;
+        inputs.x = Input.GetAxis("Horizontal");
+        inputs.z = Input.GetAxis("Vertical");
+        if (inputs != Vector3.zero)
+            transform.forward = viewRotation * inputs;
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            _body.AddForce(Vector3.up * Mathf.Sqrt(JumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+            body.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
+            isGrounded = false;
         }
     }
 
     void FixedUpdate()
     {
-        _body.MovePosition(_body.position + _angleAdjustment * _inputs * Speed * Time.fixedDeltaTime);
-        _body.angularVelocity = Vector3.zero;
+        body.MovePosition(body.position + viewRotation * inputs * speed * Time.fixedDeltaTime);
+        body.angularVelocity = Vector3.zero;
     }
 }
