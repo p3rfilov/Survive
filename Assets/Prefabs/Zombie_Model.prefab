@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8174092302941578862}
   m_Layer: 0
   m_Name: P_Leg_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 6102073521525985891}
   m_Layer: 0
   m_Name: P_Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 466792952974810211}
   m_Layer: 0
   m_Name: P_Arm_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 7829610271456032475}
   m_Layer: 0
   m_Name: P_Leg_L
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 1606927417598585695}
   m_Layer: 0
   m_Name: P_Arm_R
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 8258968938719394651}
   m_Layer: 0
   m_Name: Zombie_Model
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,6 +466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1361831a7bd7f14c8828e9c9b095c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
+  isAlive: 1
+  explosionForce: 5
 --- !u!1 &6724916181059123384
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +482,7 @@ GameObject:
   - component: {fileID: 7027652006504191958}
   m_Layer: 0
   m_Name: P_Torso
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
