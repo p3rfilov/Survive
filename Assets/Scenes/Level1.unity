@@ -1128,6 +1128,11 @@ PrefabInstance:
       propertyPath: explosionForce
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8258968938719394651, guid: f2afc5a434b5699419c71d24e0ea2e98,
+        type: 3}
+      propertyPath: isAlive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2afc5a434b5699419c71d24e0ea2e98, type: 3}
 --- !u!1001 &2129521550

@@ -24,7 +24,7 @@ public class WeaponPistol : MonoBehaviour
                 if (hit.transform.CompareTag("Enemy"))
                 {
                     var body = hit.transform.GetComponent<Rigidbody>();
-                    hit.transform.GetComponent<Enemy>().health -= damage;
+                    hit.transform.GetComponent<Enemy>().takeDamage(damage);
                     body.AddForce(ray.direction * damage, ForceMode.Impulse);
                 }
             }

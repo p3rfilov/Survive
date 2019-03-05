@@ -1,28 +1,15 @@
 ﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Creature
 {
-    public float health = 10f;
-    public bool isAlive = true;
     public float explosionForce = 3.5f;
 
-    void Start()
+    public Enemy()
     {
-        
+        health = 10f;
     }
 
-    void Update()
-    {
-        if (health <= 0f)
-        {
-            if (isAlive)
-            {
-                Kill();
-            }
-        }
-    }
-
-    void Kill()
+    public override void Kill()
     {
         Transform[] allParts;
         Rigidbody body;
