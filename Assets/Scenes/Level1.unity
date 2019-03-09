@@ -490,7 +490,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -509,7 +509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -9.51, y: 6.76, z: -9.51}
+  m_LocalPosition: {x: -14.98, y: 11.23, z: -14.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1032366215}
@@ -1026,13 +1026,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b870c2b5b61c4640a04695caaa16528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseLook: 1
-  speed: 5
-  jumpStrength: 5
-  groundDistance: 0.2
+  isAlive: 1
   ground:
     serializedVersion: 2
     m_Bits: 512
+  mouseLook: 1
 --- !u!114 &1294340210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,7 +1043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663486d7dcaf114db9bd9d2a614a7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  ammo: 10
 --- !u!1001 &1560437720
 PrefabInstance:
   m_ObjectHideFlags: 0

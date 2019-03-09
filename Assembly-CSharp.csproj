@@ -61,10 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraTarget.cs" />
-    <Compile Include="Assets\Scripts\Creature.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
-    <Compile Include="Assets\Scripts\PlayerControls.cs" />
-    <Compile Include="Assets\Scripts\WeaponPistol.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Player.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Zombie.cs" />
+    <Compile Include="Assets\Scripts\Items\Pistol.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapon.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>H:/Unity Projects/Survive/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 
-public class PlayerControls : MonoBehaviour
+public class Player : Creature
 {
     public bool mouseLook = true;
-    public float speed = 5f;
-    public float jumpStrength = 5f;
-    public float groundDistance = 0.2f;
-    public LayerMask ground;
 
-    private Rigidbody body;
-    private Vector3 inputs = Vector3.zero;
     private bool isGrounded = true;
-    private Quaternion viewRotation = Quaternion.AngleAxis(45, Vector3.up);
+    private Vector3 inputs = Vector3.zero;
+    private Quaternion viewRotation;
 
-    void Start()
+    public Player()
     {
-        body = GetComponent<Rigidbody>();
+        health = 100f;
+        moveSpeed = 5f;
+        jumpHeight = 5f;
     }
 
-    void Update()
+    protected override void Start()
+    {
+        viewRotation = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up);
+        base.Start();
+    }
+
+    protected override void Update()
     {
         isGrounded = Physics.CheckSphere(transform.position, groundDistance, ground, QueryTriggerInteraction.Ignore);
 
         inputs = Vector3.zero;
         inputs.x = Input.GetAxis("Horizontal");
         inputs.z = Input.GetAxis("Vertical");
-        body.MovePosition(body.position + viewRotation * inputs * speed * Time.fixedDeltaTime);
+        body.MovePosition(body.position + viewRotation * inputs * moveSpeed * Time.fixedDeltaTime);
         body.angularVelocity = Vector3.zero;
 
         if (mouseLook)
@@ -55,8 +58,13 @@ public class PlayerControls : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            body.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
+            body.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
             isGrounded = false;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Attack();
         }
     }
 }
