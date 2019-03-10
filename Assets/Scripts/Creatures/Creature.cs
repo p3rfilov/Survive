@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using System;
 
 public abstract class Creature : MonoBehaviour
 {
@@ -45,15 +44,36 @@ public abstract class Creature : MonoBehaviour
         }
     }
 
-    protected virtual void Kill()
-    {
-        isAlive = false;
-        throw new NotImplementedException("Kill routine not fully implemented");
-    }
-
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+    }
+
+    protected virtual void Kill()
+    {
+        Transform[] allParts;
+        Vector3 velocity = body.velocity;
+        float mass = body.mass;
+        isAlive = false;
+
+        Destroy(GetComponent<Rigidbody>());
+        Destroy(GetComponent<CapsuleCollider>());
+
+        allParts = GetComponentsInChildren<Transform>();
+        foreach (var item in allParts)
+        {
+            if (item.parent)
+            {
+                Material material = item.GetComponent<Renderer>().material;
+
+                item.gameObject.AddComponent<BoxCollider>();
+                var bodyPart = item.gameObject.AddComponent<Rigidbody>();
+                bodyPart.mass = mass;
+                bodyPart.AddForce(velocity, ForceMode.VelocityChange);
+                bodyPart.angularVelocity = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
+                StartCoroutine(FadeOut(material));
+            }
+        }
     }
 
     public virtual IEnumerator FadeOut(Material material)
