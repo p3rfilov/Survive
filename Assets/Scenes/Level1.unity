@@ -1046,6 +1046,8 @@ MonoBehaviour:
   ammo: 1000
   projectile: {fileID: 4952317445731911577, guid: c7186da0c8a814d49975252a47db86a3,
     type: 3}
+  maxDamage: 5
+  minDamage: 2
 --- !u!1001 &1560437720
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ public class Player : Creature
             isGrounded = false;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1"))
         {
             Attack();
         }

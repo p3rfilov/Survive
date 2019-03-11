@@ -64,9 +64,11 @@
     <Compile Include="Assets\Scripts\Creatures\Creature.cs" />
     <Compile Include="Assets\Scripts\Creatures\Player.cs" />
     <Compile Include="Assets\Scripts\Creatures\Zombie.cs" />
-    <Compile Include="Assets\Scripts\Items\Pistol.cs" />
-    <Compile Include="Assets\Scripts\Items\Projectile.cs" />
-    <Compile Include="Assets\Scripts\Items\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapons\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapons\Fists.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapons\Pistol.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapons\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Items\Weapons\Weapon.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>H:/Unity Projects/Survive/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
