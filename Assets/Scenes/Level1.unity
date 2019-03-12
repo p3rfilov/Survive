@@ -1031,7 +1031,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   mouseLook: 1
---- !u!114 &1294340210
+--- !u!114 &1294340207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1043,11 +1043,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663486d7dcaf114db9bd9d2a614a7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDamage: 5
+  minDamage: 2
+  model: {fileID: 0}
   ammo: 1000
   projectile: {fileID: 4952317445731911577, guid: c7186da0c8a814d49975252a47db86a3,
     type: 3}
-  maxDamage: 5
-  minDamage: 2
 --- !u!1001 &1560437720
 PrefabInstance:
   m_ObjectHideFlags: 0

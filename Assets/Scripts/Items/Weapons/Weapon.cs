@@ -2,24 +2,22 @@
 
 public class Weapon : MonoBehaviour
 {
-    public int ammo;
-    public GameObject projectile;
     public int maxDamage;
     public int minDamage;
+    public GameObject model;
 
     protected float force;
     protected float effectiveDistance;
     protected bool automatic;
     protected float fireRate;
     protected float accuracyVariance;
-    protected float projectileSpeed;
-    protected Transform fireFrom;
+    protected Transform weaponHand;
+    protected Vector3 fireDirection;
 
     private float lastfired;
 
     public Weapon()
     {
-        ammo = 1;
         maxDamage = 0;
         minDamage = 0;
         force = 1f;
@@ -27,54 +25,40 @@ public class Weapon : MonoBehaviour
         automatic = false;
         fireRate = 0f;
         accuracyVariance = 0f;
-        projectileSpeed = 10000f;
     }
 
     protected virtual void Start()
     {
-        fireFrom = transform.Find("WeaponHand").transform;
+        weaponHand = transform.Find("WeaponHand").transform;
     }
 
-    public virtual void Use()
+    public virtual bool Use()
     {
-        if (ammo > 0)
+        RaycastHit hit;
+
+        fireDirection = Quaternion.AngleAxis(Random.Range(0f, accuracyVariance), weaponHand.up) * weaponHand.forward;
+        var ray = new Ray(weaponHand.position, fireDirection);
+
+        if (!automatic || Time.time - lastfired > 1 / fireRate)
         {
-            RaycastHit hit;
-
-            Vector3 dir = Quaternion.AngleAxis(Random.Range(0f, accuracyVariance), fireFrom.up) * fireFrom.forward;
-            var ray = new Ray(fireFrom.position, dir);
-
-            if (!automatic || Time.time - lastfired > 1 / fireRate)
+            lastfired = Time.time;
+            if (Physics.Raycast(ray, out hit, effectiveDistance))
             {
-                if (projectile != null)
+                if (hit.transform.CompareTag("Enemy"))
                 {
-                    GameObject bullet = Instantiate(projectile, fireFrom.position, fireFrom.rotation);
-                    Rigidbody bulletBody = bullet.GetComponent<Rigidbody>();
-                    bulletBody.AddForce(dir * projectileSpeed);
-                    --ammo;
-                }
+                    var body = hit.transform.GetComponent<Rigidbody>();
+                    var creature = hit.transform.GetComponent<Creature>();
+                    var damage = Random.Range(minDamage, maxDamage);
 
-                lastfired = Time.time;
-                if (Physics.Raycast(ray, out hit, effectiveDistance))
-                {
-                    if (hit.transform.CompareTag("Enemy"))
+                    body.AddForce(ray.direction * damage * force, ForceMode.VelocityChange);
+                    if (creature != null && creature.isAlive)
                     {
-                        var body = hit.transform.GetComponent<Rigidbody>();
-                        var creature = hit.transform.GetComponent<Creature>();
-                        var damage = Random.Range(minDamage, maxDamage);
-
-                        body.AddForce(ray.direction * damage * force, ForceMode.VelocityChange);
-                        if (creature != null && creature.isAlive)
-                        {
-                            creature.TakeDamage(damage);
-                        }
+                        creature.TakeDamage(damage);
                     }
                 }
             }
+            return true;
         }
-        else
-        {
-            print("Out of Ammo!");
-        }
+        return false;
     }
 }

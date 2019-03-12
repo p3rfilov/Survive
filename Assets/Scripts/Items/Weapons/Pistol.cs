@@ -1,5 +1,5 @@
 ﻿
-public class Pistol : Weapon
+public class Pistol : Firearm
 {
     public Pistol()
     {

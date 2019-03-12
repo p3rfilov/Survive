@@ -1,10 +1,6 @@
-﻿using UnityEngine;
-
+﻿
 public class Fists : Weapon
 {
-    int ammo;
-    GameObject projectile;
-
     public Fists()
     {
         maxDamage = 2;
