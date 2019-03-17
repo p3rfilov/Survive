@@ -10,4 +10,9 @@ public class Fists : Weapon
         automatic = true;
         fireRate = 2f;
     }
+
+    public override void Use()
+    {
+        throw new System.NotImplementedException();
+    }
 }

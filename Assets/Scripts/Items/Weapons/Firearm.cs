@@ -17,26 +17,24 @@ public class Firearm : Weapon
         projectileSpeed = 10000f;
     }
 
-    public override bool Use()
+    public override void Use()
     {
         if (ammo > 0)
         {
-            if (base.Use())
+            //if (base.Use())
             {
                 if (projectile != null)
                 {
-                    GameObject bullet = Instantiate(projectile, weaponHand.position, weaponHand.rotation);
+                    GameObject bullet = Instantiate(projectile, fireFrom.position, fireFrom.rotation);
                     Rigidbody bulletBody = bullet.GetComponent<Rigidbody>();
                     bulletBody.AddForce(fireDirection * projectileSpeed);
                     --ammo;
                 }
-                return true;
             }
         }
         else
         {
             print("Out of Ammo!");
         }
-        return false;
     }
 }
