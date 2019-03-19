@@ -66,11 +66,7 @@ public class PlayerController : MonoBehaviour
             body.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
             isGrounded = false;
         }
-    }
 
-    private void FixedUpdate()
-    {
-        // most events triggered by Fire are Physics-dependadnt
         if (Input.GetButton("Fire1"))
         {
             var usable = holder.Object.GetComponent<IUsable>();

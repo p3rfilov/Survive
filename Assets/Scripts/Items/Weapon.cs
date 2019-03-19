@@ -8,11 +8,12 @@ public abstract class Weapon : MonoBehaviour, IUsable
     public float accuracyVariance = 0f;
 
     protected Transform fireFrom;
-    protected float lastFired = 0f;
+    protected float lastFired;
 
     protected virtual void Start()
     {
         fireFrom = GameObject.Find("fireFrom").transform;
+        lastFired = -1f;
     }
 
     public abstract void Use();

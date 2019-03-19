@@ -17,7 +17,7 @@ public class GreandeLauncher : Weapon
 
     public GreandeLauncher()
     {
-        upAngle = 30f;
+        upAngle = 0;
         accuracyVariance = 1f;
         automatic = true;
         fireRate = 5f;

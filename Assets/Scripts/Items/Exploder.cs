@@ -21,18 +21,21 @@ public class Exploder : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
         {
-            var body = hit.GetComponent<Rigidbody>();
-            var damageable = hit.GetComponent<IDamageable>();
-
-            if (body != null)
+            if (hit.GetComponent<Projectile>() == null)
             {
-                body.AddExplosionForce(force, explosionPos, radius, lift);
-            }
+                var body = hit.GetComponent<Rigidbody>();
+                var damageable = hit.GetComponent<IDamageable>();
 
-            if (damageable != null)
-            {
-                int damage = damageCalculator.CalculateRandomDamage();
-                damageable.TakeDamage(damage);
+                if (body != null)
+                {
+                    body.AddExplosionForce(force, explosionPos, radius, lift);
+                }
+
+                if (damageable != null)
+                {
+                    int damage = damageCalculator.CalculateRandomDamage();
+                    damageable.TakeDamage(damage);
+                }
             }
         }
     }
