@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(DamageCalculator))]
 public abstract class Weapon : MonoBehaviour, IUsable
 {
     public float force = 0f;
-    public float effectiveDistance = 1000000f;
     public bool automatic = false;
     public float fireRate = 0f;
     public float accuracyVariance = 0f;
@@ -12,7 +10,7 @@ public abstract class Weapon : MonoBehaviour, IUsable
     protected Transform fireFrom;
     protected float lastFired = 0f;
 
-    public virtual void Start()
+    protected virtual void Start()
     {
         fireFrom = GameObject.Find("fireFrom").transform;
     }

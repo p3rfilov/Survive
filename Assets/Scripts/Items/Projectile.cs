@@ -1,32 +1,27 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
-    public int maxDamage = 0;
-    public int minDamage = 0;
-    public float splashRadius = 0f;
-    public float force = 0;
     public float lifetime = 0.1f;
+    public bool destroyOnCollision = true;
 
     private Collider col;
     private Rigidbody body;
 
-    protected virtual void Start()
+    private void Start()
     {
         col = GetComponent<Collider>();
+        col.isTrigger = true;
         body = GetComponent<Rigidbody>();
         Destroy(gameObject, lifetime);
     }
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
-    }
-
-    protected virtual void OnDestroy()
-    {
-        
+        if (destroyOnCollision)
+            Destroy(gameObject);
     }
 }

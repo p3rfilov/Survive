@@ -2,7 +2,7 @@
 
 public class ProjectileShooter : MonoBehaviour
 {
-    public GameObject projectile;
+    public Projectile projectile;
     public float projectileSpeed;
 
     public void Shoot(Transform origin, Vector3 direction)
@@ -10,7 +10,7 @@ public class ProjectileShooter : MonoBehaviour
         if (projectile != null)
         {
             // TODO: implement a Pooling System
-            GameObject _projectile = Instantiate(projectile, origin.position, origin.rotation);
+            Projectile _projectile = Instantiate(projectile, origin.position, origin.rotation);
             Rigidbody body = _projectile.GetComponent<Rigidbody>();
             body.AddForce(direction * projectileSpeed);
         }

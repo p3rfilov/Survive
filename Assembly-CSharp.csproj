@@ -69,9 +69,10 @@
     <Compile Include="Assets\Scripts\Creatures\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Items\Ammo.cs" />
     <Compile Include="Assets\Scripts\Items\DamageCalculator.cs" />
+    <Compile Include="Assets\Scripts\Items\Exploder.cs" />
+    <Compile Include="Assets\Scripts\Items\GreandeLauncher.cs" />
     <Compile Include="Assets\Scripts\Items\IDamageable.cs" />
     <Compile Include="Assets\Scripts\Items\IUsable.cs" />
-    <Compile Include="Assets\Scripts\Items\IWeapon.cs" />
     <Compile Include="Assets\Scripts\Items\Pistol.cs" />
     <Compile Include="Assets\Scripts\Items\Projectile.cs" />
     <Compile Include="Assets\Scripts\Items\ProjectileShooter.cs" />

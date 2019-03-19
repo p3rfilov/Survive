@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4d5dc599de3ac4487d11d30251b9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5112353223541393577, guid: 04553904f4084fb42acfc7c084c020db, type: 3}
+  prefab: {fileID: 5112353223541393577, guid: 1784a180049529c49ab6865a56e77b7b, type: 3}
   holdingHand: {fileID: 624658778294007059}
 --- !u!1001 &6720295013406391579
 PrefabInstance:

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(Ammo))]
+[RequireComponent(typeof(RayShooter))]
 [RequireComponent(typeof(ProjectileShooter))]
 [RequireComponent(typeof(DamageCalculator))]
 public class Pistol : Weapon
 {
     private Ammo ammo;
+    private RayShooter rayShooter;
     private ProjectileShooter projectileShooter;
     private DamageCalculator damageCalculator;
 
@@ -17,10 +20,11 @@ public class Pistol : Weapon
         fireRate = 2f;
     }
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         ammo = GetComponent<Ammo>();
+        rayShooter = GetComponent<RayShooter>();
         projectileShooter = GetComponent<ProjectileShooter>();
         damageCalculator = GetComponent<DamageCalculator>();
     }
@@ -33,20 +37,21 @@ public class Pistol : Weapon
             Transform hit;
 
             ammo.SpendAmmo();
-            dir = RayShooter.GetRandomHorizontalDirection(fireFrom, accuracyVariance);
-            hit = RayShooter.ShootRay(fireFrom.position, dir, effectiveDistance);
+            dir = rayShooter.GetRandomHorizontalDirection(fireFrom, accuracyVariance);
+            hit = rayShooter.ShootRay(fireFrom.position, dir);
             projectileShooter.Shoot(fireFrom, dir);
             if (hit != null)
             {
+                var body = hit.GetComponent<Rigidbody>();
                 var damageable = hit.GetComponent<IDamageable>();
+
+                if (body != null)
+                    body.AddForce(dir * force, ForceMode.VelocityChange);
+
                 if (damageable != null)
                 {
                     int damage = damageCalculator.CalculateRandomDamage();
                     damageable.TakeDamage(damage);
-
-                    var body = hit.GetComponent<Rigidbody>();
-                    if (body != null)
-                        body.AddForce(dir * damage * force, ForceMode.VelocityChange);
                 }
             }
         }
