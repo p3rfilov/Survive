@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7514308103718529373}
   - component: {fileID: 7679768771473204117}
   - component: {fileID: 801489696664252300}
+  - component: {fileID: 5302377294369496767}
   - component: {fileID: 3565771656928409901}
   - component: {fileID: 8227148951186551162}
   m_Layer: 0
@@ -48,7 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f663486d7dcaf114db9bd9d2a614a7d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
   automatic: 1
   fireRate: 2
   accuracyVariance: 1
@@ -78,6 +78,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectiveDistance: 1000000
+--- !u!114 &5302377294369496767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112353223541393577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74c82e79575f6f4fbf116f5a113e836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 2
+  strength: 2
 --- !u!114 &3565771656928409901
 MonoBehaviour:
   m_ObjectHideFlags: 0

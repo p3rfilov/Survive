@@ -3,18 +3,19 @@
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Ammo))]
 [RequireComponent(typeof(RayShooter))]
+[RequireComponent(typeof(ForceApplier))]
 [RequireComponent(typeof(ProjectileShooter))]
 [RequireComponent(typeof(DamageCalculator))]
 public class Pistol : Weapon
 {
     private Ammo ammo;
     private RayShooter rayShooter;
+    private ForceApplier forceApplier;
     private ProjectileShooter projectileShooter;
     private DamageCalculator damageCalculator;
 
     public Pistol()
     {
-        force = 10f;
         accuracyVariance = 1f;
         automatic = true;
         fireRate = 2f;
@@ -25,6 +26,7 @@ public class Pistol : Weapon
         base.Start();
         ammo = GetComponent<Ammo>();
         rayShooter = GetComponent<RayShooter>();
+        forceApplier = GetComponent<ForceApplier>();
         projectileShooter = GetComponent<ProjectileShooter>();
         damageCalculator = GetComponent<DamageCalculator>();
     }
@@ -45,14 +47,13 @@ public class Pistol : Weapon
                 var body = hit.GetComponent<Rigidbody>();
                 var damageable = hit.GetComponent<IDamageable>();
 
-                if (body != null)
-                    body.AddForce(dir * force, ForceMode.VelocityChange);
-
                 if (damageable != null)
                 {
                     int damage = damageCalculator.CalculateRandomDamage();
                     damageable.TakeDamage(damage);
+                    new WaitForFixedUpdate();
                 }
+                forceApplier.ApplyForce(body, dir);
             }
         }
     }

@@ -26,15 +26,16 @@ public class Exploder : MonoBehaviour
                 var body = hit.GetComponent<Rigidbody>();
                 var damageable = hit.GetComponent<IDamageable>();
 
-                if (body != null)
-                {
-                    body.AddExplosionForce(force, explosionPos, radius, lift);
-                }
-
                 if (damageable != null)
                 {
                     int damage = damageCalculator.CalculateRandomDamage();
                     damageable.TakeDamage(damage);
+                    new WaitForFixedUpdate();
+                }
+
+                if (body != null)
+                {
+                    body.AddExplosionForce(force, explosionPos, radius, lift);
                 }
             }
         }

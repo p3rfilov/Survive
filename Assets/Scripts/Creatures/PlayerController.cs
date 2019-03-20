@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody body;
     private ObjectHolder holder;
 
-    private void Awake()
+    private void Start()
     {
         viewRotation = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up);
         body = GetComponent<Rigidbody>();

@@ -28,7 +28,8 @@ public class Health : MonoBehaviour, IDamageable
     public void Kill()
     {
         Transform[] allParts;
-        Vector3 velocity = body.velocity;
+        //Vector3 velocity = body.GetRelativePointVelocity(transform.position);
+        Vector3 random = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
         float mass = body.mass;
 
         Destroy(body);
@@ -43,13 +44,15 @@ public class Health : MonoBehaviour, IDamageable
                 item.gameObject.AddComponent<BoxCollider>();
                 var bodyPart = item.gameObject.AddComponent<Rigidbody>();
                 bodyPart.mass = mass;
-                bodyPart.AddForce(Vector3.Normalize(velocity), ForceMode.VelocityChange);
-                bodyPart.angularVelocity = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
+                bodyPart.AddForce(random, ForceMode.VelocityChange);
+                bodyPart.angularVelocity = random;
 
                 Material material = rend.material;
                 StartCoroutine(FadeOut(material));
             }
         }
+        new WaitForSeconds(0.2f);
+        new WaitForFixedUpdate();
     }
 
     private IEnumerator FadeOut(Material material)
