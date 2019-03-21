@@ -21,15 +21,17 @@ public class Health : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-            Kill();
+            StartCoroutine(Kill());
         }
     }
 
-    public void Kill()
+    public IEnumerator Kill()
     {
+        yield return new WaitForFixedUpdate();
+
         Transform[] allParts;
-        //Vector3 velocity = body.GetRelativePointVelocity(transform.position);
-        Vector3 random = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
+        Vector3 velocity = body.velocity;
+        Vector3 angVelocity = body.angularVelocity;
         float mass = body.mass;
 
         Destroy(body);
@@ -39,20 +41,19 @@ public class Health : MonoBehaviour, IDamageable
         foreach (var item in allParts)
         {
             Renderer rend = item.GetComponent<Renderer>();
+            Vector3 random = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
             if (rend != null)
             {
                 item.gameObject.AddComponent<BoxCollider>();
                 var bodyPart = item.gameObject.AddComponent<Rigidbody>();
                 bodyPart.mass = mass;
-                bodyPart.AddForce(random, ForceMode.VelocityChange);
-                bodyPart.angularVelocity = random;
+                bodyPart.velocity = velocity + random;
+                bodyPart.angularVelocity = angVelocity + random;
 
                 Material material = rend.material;
                 StartCoroutine(FadeOut(material));
             }
         }
-        new WaitForSeconds(0.2f);
-        new WaitForFixedUpdate();
     }
 
     private IEnumerator FadeOut(Material material)

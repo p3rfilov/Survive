@@ -30,7 +30,6 @@ public class Exploder : MonoBehaviour
                 {
                     int damage = damageCalculator.CalculateRandomDamage();
                     damageable.TakeDamage(damage);
-                    new WaitForFixedUpdate();
                 }
 
                 if (body != null)
