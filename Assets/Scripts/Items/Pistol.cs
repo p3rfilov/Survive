@@ -35,6 +35,7 @@ public class Pistol : Weapon
     {
         if (ammo.ammo > 0 && CanUse())
         {
+            base.Use();
             Vector3 dir;
             Transform hit;
 

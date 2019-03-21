@@ -26,66 +26,69 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics.CheckSphere(transform.position, groundDistance, ground, QueryTriggerInteraction.Ignore);
-        float _airControl = 1f;
-
-        if (!isGrounded) _airControl = airControl;
-        inputs = Vector3.zero;
-        inputs.x = Input.GetAxis("Horizontal");
-        inputs.z = Input.GetAxis("Vertical");
-        body.MovePosition(body.position + viewRotation * inputs * moveSpeed * _airControl * Time.fixedDeltaTime);
-        body.angularVelocity = Vector3.zero;
-
-        if (mouseLook)
+        if (body != null)
         {
-            Ray ray;
-            RaycastHit hit;
+            isGrounded = Physics.CheckSphere(transform.position, groundDistance, ground, QueryTriggerInteraction.Ignore);
+            float _airControl = 1f;
 
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (!isGrounded) _airControl = airControl;
+            inputs = Vector3.zero;
+            inputs.x = Input.GetAxis("Horizontal");
+            inputs.z = Input.GetAxis("Vertical");
+            body.MovePosition(body.position + viewRotation * inputs * moveSpeed * _airControl * Time.fixedDeltaTime);
+            body.angularVelocity = Vector3.zero;
+
+            if (mouseLook)
             {
-                if (hit.transform.CompareTag("Ground"))
+                Ray ray;
+                RaycastHit hit;
+
+                ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                    transform.LookAt(targetPosition);
-                }
-                else if (hit.transform.CompareTag("Enemy"))
-                {
-                    Vector3 targetPosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
-                    transform.LookAt(targetPosition);
+                    if (hit.transform.CompareTag("Ground"))
+                    {
+                        Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                        transform.LookAt(targetPosition);
+                    }
+                    else if (hit.transform.CompareTag("Enemy"))
+                    {
+                        Vector3 targetPosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
+                        transform.LookAt(targetPosition);
+                    }
                 }
             }
-        }
-        else if (inputs != Vector3.zero)
-        {
-            transform.forward = viewRotation * inputs;
-        }
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            body.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
-            isGrounded = false;
-        }
-
-        if (Input.GetButtonDown("Next Item"))
-        {
-            itemHolder.CicleItems(1);
-        }
-
-        if (Input.GetButtonDown("Last Item"))
-        {
-            itemHolder.CicleItems(-1);
-        }
-
-        if (Input.GetButton("Fire1"))
-        {
-            var obj = itemHolder.Object;
-            if (obj != null)
+            else if (inputs != Vector3.zero)
             {
-                var usable = obj.GetComponent<IUsable>();
-                if (usable != null)
+                transform.forward = viewRotation * inputs;
+            }
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                body.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+                isGrounded = false;
+            }
+
+            if (Input.GetButtonDown("Next Item"))
+            {
+                itemHolder.CicleItems(1);
+            }
+
+            if (Input.GetButtonDown("Last Item"))
+            {
+                itemHolder.CicleItems(-1);
+            }
+
+            if (Input.GetButton("Fire1"))
+            {
+                var obj = itemHolder.Object;
+                if (obj != null)
                 {
-                    usable.Use();
+                    var usable = obj.GetComponent<IUsable>();
+                    if (usable != null)
+                    {
+                        usable.Use();
+                    }
                 }
             }
         }

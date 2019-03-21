@@ -8,6 +8,7 @@ public class CameraTarget : MonoBehaviour
 
     void Update()
     {
-        transform.position = target.transform.position;
+        if (target != null)
+            transform.position = target.transform.position;
     }
 }

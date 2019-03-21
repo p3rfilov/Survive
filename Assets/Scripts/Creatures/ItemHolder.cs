@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
 public class ItemHolder : MonoBehaviour
@@ -18,10 +19,19 @@ public class ItemHolder : MonoBehaviour
     public void CicleItems(int index)
     {
         currentIndex += index;
+        if (currentIndex > inventory.Size - 1)
+            currentIndex = 0;
+        if (currentIndex < 0)
+            currentIndex = inventory.Size - 1;
+
         Item item = inventory.GetItem(currentIndex);
         if (item != null)
         {
             HoldItem(item);
+        }
+        else if (!IsArrayEmpty(inventory.AllItems))
+        {
+            CicleItems(index);
         }
     }
 
@@ -36,5 +46,15 @@ public class ItemHolder : MonoBehaviour
             Object.transform.SetParent(holdingHand);
             return;
         }
+    }
+
+    private bool IsArrayEmpty(Item[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] != null)
+                return false;
+        }
+        return true;
     }
 }

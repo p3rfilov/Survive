@@ -11,11 +11,13 @@ public abstract class Weapon : Item, ICollectable, IUsable
 
     protected virtual void Start()
     {
-        fireFrom = GameObject.Find("fireFrom").transform;
         lastFired = float.NegativeInfinity;
     }
 
-    public abstract void Use();
+    public virtual void Use()
+    {
+        fireFrom = GameObject.Find("fireFrom").transform;
+    }
 
     public virtual bool CanUse()
     {
