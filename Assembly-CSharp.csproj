@@ -62,14 +62,17 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraTarget.cs" />
     <Compile Include="Assets\Scripts\Creatures\Health.cs" />
-    <Compile Include="Assets\Scripts\Creatures\ObjectHolder.cs" />
+    <Compile Include="Assets\Scripts\Creatures\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Creatures\ItemHolder.cs" />
     <Compile Include="Assets\Scripts\Creatures\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Items\Ammo.cs" />
     <Compile Include="Assets\Scripts\Items\DamageCalculator.cs" />
     <Compile Include="Assets\Scripts\Items\Exploder.cs" />
     <Compile Include="Assets\Scripts\Items\ForceApplier.cs" />
     <Compile Include="Assets\Scripts\Items\GreandeLauncher.cs" />
+    <Compile Include="Assets\Scripts\Items\ICollectable.cs" />
     <Compile Include="Assets\Scripts\Items\IDamageable.cs" />
+    <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\IUsable.cs" />
     <Compile Include="Assets\Scripts\Items\Pistol.cs" />
     <Compile Include="Assets\Scripts\Items\Projectile.cs" />

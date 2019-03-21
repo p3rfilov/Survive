@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(ObjectHolder))]
+[RequireComponent(typeof(ItemHolder))]
 public class PlayerController : MonoBehaviour
 {
     public bool mouseLook = true;
@@ -15,13 +15,13 @@ public class PlayerController : MonoBehaviour
 
     private Quaternion viewRotation;
     private Rigidbody body;
-    private ObjectHolder holder;
+    private ItemHolder itemHolder;
 
     private void Start()
     {
         viewRotation = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up);
         body = GetComponent<Rigidbody>();
-        holder = GetComponent<ObjectHolder>();
+        itemHolder = GetComponent<ItemHolder>();
     }
 
     private void Update()
@@ -67,12 +67,26 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
 
+        if (Input.GetButtonDown("Next Item"))
+        {
+            itemHolder.CicleItems(1);
+        }
+
+        if (Input.GetButtonDown("Last Item"))
+        {
+            itemHolder.CicleItems(-1);
+        }
+
         if (Input.GetButton("Fire1"))
         {
-            var usable = holder.Object.GetComponent<IUsable>();
-            if (usable != null)
+            var obj = itemHolder.Object;
+            if (obj != null)
             {
-                usable.Use();
+                var usable = obj.GetComponent<IUsable>();
+                if (usable != null)
+                {
+                    usable.Use();
+                }
             }
         }
     }

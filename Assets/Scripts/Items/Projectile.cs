@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
+        transform.SetParent(null);
         col = GetComponent<Collider>();
         col.isTrigger = true;
         body = GetComponent<Rigidbody>();

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour, IUsable
+public abstract class Weapon : Item, ICollectable, IUsable
 {
     public bool automatic = false;
     public float fireRate = 0f;
@@ -12,7 +12,7 @@ public abstract class Weapon : MonoBehaviour, IUsable
     protected virtual void Start()
     {
         fireFrom = GameObject.Find("fireFrom").transform;
-        lastFired = -1f;
+        lastFired = float.NegativeInfinity;
     }
 
     public abstract void Use();
