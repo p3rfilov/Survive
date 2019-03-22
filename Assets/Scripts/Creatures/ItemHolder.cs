@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
 public class ItemHolder : MonoBehaviour
@@ -9,6 +8,11 @@ public class ItemHolder : MonoBehaviour
 
     private Inventory inventory;
     private int currentIndex = 0;
+
+    private void OnEnable()
+    {
+        EventManager.onItemCollected += HoldIfEmpty;
+    }
 
     private void Start()
     {
@@ -35,16 +39,24 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
+    private void HoldIfEmpty()
+    {
+        if (Object == null)
+            CicleItems(1);
+    }
+
     private void HoldItem(Item item)
     {
         if (Object != null)
-            Destroy(Object);
+            Object.SetActive(false);
 
         if (holdingHand != null)
         {
-            Object = Instantiate(item.transform.gameObject, holdingHand.position, holdingHand.rotation);
+            Object = item.transform.gameObject;
+            Object.transform.position = holdingHand.position;
+            Object.transform.rotation = holdingHand.rotation;
             Object.transform.SetParent(holdingHand);
-            return;
+            Object.SetActive(true);
         }
     }
 

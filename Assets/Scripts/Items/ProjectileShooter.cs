@@ -12,6 +12,7 @@ public class ProjectileShooter : MonoBehaviour
             // TODO: implement a Pooling System
             Projectile _projectile = Instantiate(projectile, origin.position, origin.rotation);
             Rigidbody body = _projectile.GetComponent<Rigidbody>();
+            Physics.IgnoreCollision(_projectile.GetComponent<Collider>(), GetComponent<Collider>());
             body.AddForce(direction * projectileSpeed);
         }
     }

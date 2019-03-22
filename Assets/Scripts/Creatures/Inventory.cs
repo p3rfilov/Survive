@@ -8,15 +8,20 @@ public class Inventory : MonoBehaviour
     public int Size { get { return size; } }
     public Item[] AllItems { get { return items; } }
 
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i] == null)
+        if (!HasItem(item))
+            for (int i = 0; i < items.Length; i++)
             {
-                items[i] = item;
+                if (items[i] == null)
+                {
+                    item.HasOwner = true;
+                    item.transform.gameObject.SetActive(false);
+                    items[i] = item;
+                    return true;
+                }
             }
-        }
+        return false;
     }
 
     public void RemoveItem(Item item)
@@ -24,14 +29,22 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] == item)
-            {
                 items[i] = null;
-            }
         }
     }
 
     public Item GetItem(int index)
     {
         return items[index];
+    }
+
+    private bool HasItem(Item item)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] == item)
+                return true;
+        }
+        return false;
     }
 }

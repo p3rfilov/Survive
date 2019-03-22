@@ -170,8 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18647307bb8b8e4da8c79589d0a2614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDamage: 0
-  minDamage: 0
-  splashRadius: 0
-  force: 0
   lifetime: 0.1
+  destroyOnCollision: 1

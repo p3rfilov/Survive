@@ -81,14 +81,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButton("Fire1"))
             {
-                var obj = itemHolder.Object;
-                if (obj != null)
+                var usable = itemHolder.Object?.GetComponent<IUsable>();
+                if (usable != null)
                 {
-                    var usable = obj.GetComponent<IUsable>();
-                    if (usable != null)
-                    {
-                        usable.Use();
-                    }
+                    usable.Use();
                 }
             }
         }
