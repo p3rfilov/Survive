@@ -7,6 +7,7 @@ public class Exploder : MonoBehaviour
     public float radius = 1f;
     public float force;
     public float lift;
+    public GameObject explosionPrefab;
 
     private DamageCalculator damageCalculator;
 
@@ -37,6 +38,15 @@ public class Exploder : MonoBehaviour
                     body.AddExplosionForce(force, explosionPos, radius, lift);
                 }
             }
+        }
+
+        if (explosionPrefab != null)
+        {
+            var obj = Instantiate(explosionPrefab, transform.position, transform.rotation);
+            var explosion = explosionPrefab.GetComponent<ParticleSystem>();
+            if (explosion != null)
+                explosion.Play();
+            Destroy(obj, explosion.main.duration);
         }
     }
 }

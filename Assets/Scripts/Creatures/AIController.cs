@@ -9,7 +9,7 @@ public class AIController : MonoBehaviour
     public float spotDistance = 10f;
     public float chaseDistance = 5f;
 
-    private float minimalDistance = 0.5f;
+    private float minimalDistance = 1f;
     private bool isChasing = false;
     private Transform player;
     private NavMeshAgent agent;
