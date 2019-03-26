@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(ItemHolder))]
 public class PlayerController : MonoBehaviour
 {

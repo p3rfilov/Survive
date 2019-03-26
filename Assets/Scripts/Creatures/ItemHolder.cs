@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 [RequireComponent(typeof(Inventory))]
 public class ItemHolder : MonoBehaviour
 {
