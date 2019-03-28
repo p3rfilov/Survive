@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 1
-  fireRate: 0.5
+  fireDelay: 0.5
   accuracyVariance: 1
   upAngle: 10
 --- !u!114 &374465333547409380

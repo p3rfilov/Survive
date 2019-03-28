@@ -14,7 +14,7 @@ public class ZombieTeeth : Weapon
     {
         accuracyVariance = 0f;
         automatic = true;
-        fireDelay = 3f;
+        fireRate = 1f;
     }
 
     protected override void Start()

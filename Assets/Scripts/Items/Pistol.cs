@@ -18,7 +18,7 @@ public class Pistol : Weapon
     {
         accuracyVariance = 1f;
         automatic = true;
-        fireDelay = 2f;
+        fireRate = 2f;
     }
 
     protected override void Start()

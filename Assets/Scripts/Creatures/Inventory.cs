@@ -8,6 +8,11 @@ public class Inventory : MonoBehaviour
     public int Size { get { return size; } }
     public Item[] AllItems { get { return items; } }
 
+    private void OnEnable()
+    {
+        InstantiateItems();
+    }
+
     public bool AddItem(Item item)
     {
         if (!HasItem(item))
@@ -16,7 +21,7 @@ public class Inventory : MonoBehaviour
                 if (items[i] == null)
                 {
                     item.HasOwner = true;
-                    item.transform.gameObject.SetActive(false);
+                    item.gameObject.SetActive(false);
                     items[i] = item;
                     return true;
                 }
@@ -42,9 +47,26 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] == item)
+            if (items[i] != null && items[i].name == item.name)
                 return true;
         }
         return false;
+    }
+
+    private void InstantiateItems()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                var obj = items[i].gameObject;
+                if (obj.scene.name == null)
+                {
+                    items[i] = null;
+                    var newItem = Instantiate(obj).GetComponent<Item>();
+                    AddItem(newItem);
+                }
+            }
+        }
     }
 }
