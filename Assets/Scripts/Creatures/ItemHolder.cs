@@ -10,14 +10,10 @@ public class ItemHolder : MonoBehaviour
     private Inventory inventory;
     private int currentIndex = 0;
 
-    private void OnEnable()
-    {
-        EventManager.onItemCollected += HoldIfEmpty;
-    }
-
     private void Start()
     {
         inventory = GetComponent<Inventory>();
+        EventManager.onItemCollected += HoldIfEmpty;
         CicleItems(currentIndex);
     }
 
@@ -54,6 +50,11 @@ public class ItemHolder : MonoBehaviour
         if (holdingHand != null)
         {
             Object = item.transform.gameObject;
+            // TODO: currently keeps creating new objects...
+            if (Object.scene.name == null)
+            {
+                Object = Instantiate(Object, transform.position, transform.rotation);
+            }
             Object.transform.position = holdingHand.position;
             Object.transform.rotation = holdingHand.rotation;
             Object.transform.SetParent(holdingHand);

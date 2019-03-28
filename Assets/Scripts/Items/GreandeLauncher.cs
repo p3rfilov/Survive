@@ -20,7 +20,7 @@ public class GreandeLauncher : Weapon
         upAngle = 0;
         accuracyVariance = 1f;
         automatic = true;
-        fireRate = 5f;
+        fireDelay = 5f;
     }
 
     protected override void Start()

@@ -3,7 +3,7 @@
 public abstract class Weapon : Item, IUsable
 {
     public bool automatic = false;
-    public float fireRate = 0f;
+    public float fireDelay = 0f;
     public float accuracyVariance = 0f;
     
     protected Transform fireFrom;
@@ -32,7 +32,7 @@ public abstract class Weapon : Item, IUsable
 
     public virtual bool CanUse()
     {
-        if (!automatic || Time.time - lastFired > 1 / fireRate)
+        if (!automatic || Time.time - lastFired > 1 / fireDelay)
         {
             lastFired = Time.time;
             return true;

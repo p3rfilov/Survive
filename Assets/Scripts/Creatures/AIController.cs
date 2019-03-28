@@ -4,22 +4,26 @@ using UnityEngine.AI;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(ItemHolder))]
 public class AIController : MonoBehaviour
 {
     public float spotDistance = 10f;
     public float chaseDistance = 5f;
+    public float attackDistance = 1f;
+    public string enemyTag = "Player";
 
-    private float minimalDistance = 1f;
     private bool isChasing = false;
-    private Transform player;
+    private Transform enemy;
     private NavMeshAgent agent;
     private Health health;
+    private ItemHolder itemHolder;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        enemy = GameObject.FindGameObjectWithTag(enemyTag)?.transform;
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
+        itemHolder = GetComponent<ItemHolder>();
     }
 
     void Update()
@@ -30,18 +34,30 @@ public class AIController : MonoBehaviour
             agent.enabled = false;
         }
 
-        if (player != null && agent.enabled)
+        if (enemy != null && agent.enabled)
         {
             var threshold = spotDistance;
-            var distance = Vector3.Distance(transform.position, player.position);
+            var distance = Vector3.Distance(transform.position, enemy.position);
 
             if (isChasing)
                 threshold += chaseDistance;
 
             if (distance < threshold)
             {
-                if (distance > minimalDistance)
-                    agent.destination = player.position;
+                if (distance > attackDistance)
+                    agent.destination = enemy.position;
+                else
+                {
+                    var enemyHealth = enemy.gameObject?.GetComponent<Health>();
+                    if (enemyHealth != null && enemyHealth.health > 0)
+                    {
+                        var usable = itemHolder.Object?.GetComponent<IUsable>();
+                        if (usable != null)
+                        {
+                            usable.Use();
+                        }
+                    }
+                }
             }
             else
             {
