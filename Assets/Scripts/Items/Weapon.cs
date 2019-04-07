@@ -12,7 +12,6 @@ public abstract class Weapon : Item, IUsable
     protected virtual void Start()
     {
         lastFired = float.NegativeInfinity;
-        HasOwner = false;
     }
 
     public virtual void Use()

@@ -2,54 +2,32 @@
 
 public class ItemFloater : MonoBehaviour
 {
-    public Item item;
-    public float rotationSpeed = 60f;
-    public float wobbleSpeed = 2f;
-    public float height = 0.5f;
-    public float amplitude = 0.1f;
+    static float rotationSpeed = 60f;
+    static float wobbleSpeed = 2f;
+    static float height = 0.5f;
+    static float amplitude = 0.1f;
 
-    private GameObject obj;
+    private Item item;
     private Vector3 tempPos;
     private float yPos;
 
     private void Start()
     {
+        item = GetComponent<Item>();
         if (item != null)
         {
-            var alt = new Vector3(0, height, 0);
-            obj = Instantiate(item.transform.gameObject, transform.position + alt, transform.rotation);
-            tempPos = obj.transform.position;
-            yPos = obj.transform.position.y;
-
-            EventManager.onItemCollected += Deactivate;
+            tempPos = transform.position;
+            yPos = transform.position.y;
         }
     }
 
     private void Update()
     {
-        if (obj != null)
+        if (item != null && !item.HasOwner)
         {
-            obj.transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
-            tempPos.y = yPos + amplitude * Mathf.Sin(wobbleSpeed * Time.time);
-            obj.transform.position = tempPos;
+            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            tempPos.y = yPos + height + amplitude * Mathf.Sin(wobbleSpeed * Time.time);
+            transform.position = tempPos;
         }
     }
-
-    private void Deactivate()
-    {
-        Item _item = obj?.GetComponent<Item>();
-        if (_item != null && _item.HasOwner)
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Item _item = obj?.GetComponent<Item>();
-    //    if (_item != null && _item.HasOwner)
-    //    {
-    //        gameObject.SetActive(false);
-    //    }
-    //}
 }

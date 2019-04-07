@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5302377294369496767}
   - component: {fileID: 3565771656928409901}
   - component: {fileID: 8227148951186551162}
+  - component: {fileID: 2958502133073072359}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -30,8 +31,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5112353223541393577}
-  m_LocalRotation: {x: -0, y: 0.8878984, z: -0, w: -0.4600397}
-  m_LocalPosition: {x: -0.75701463, y: 1.344, z: -4.6889296}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.364, y: 1.344, z: -1.9660001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5130720894317333168}
@@ -64,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 1
-  fireDelay: 2
+  fireRate: 2
   accuracyVariance: 1
 --- !u!114 &7679768771473204117
 MonoBehaviour:
@@ -135,6 +136,18 @@ MonoBehaviour:
   projectile: {fileID: 3475116895781377300, guid: c7186da0c8a814d49975252a47db86a3,
     type: 3}
   projectileSpeed: 10000
+--- !u!114 &2958502133073072359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5112353223541393577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e845d61e3d0c604eb78dcef2b27fed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4022276914676858863
 PrefabInstance:
   m_ObjectHideFlags: 0
