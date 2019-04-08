@@ -32,7 +32,7 @@ public class ItemHolder : MonoBehaviour
         }
         else if (!IsArrayEmpty(inventory.AllItems))
         {
-            CicleItems(index);
+            CicleItems(currentIndex);
         }
     }
 

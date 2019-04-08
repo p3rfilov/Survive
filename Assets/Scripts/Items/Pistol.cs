@@ -33,13 +33,12 @@ public class Pistol : Weapon
 
     public override void Use()
     {
-        if (ammo.ammo > 0 && CanUse())
+        if (CanUse() && ammo.SpendAmmo())
         {
             base.Use();
             Vector3 dir;
             Transform hit;
 
-            ammo.SpendAmmo();
             dir = rayShooter.GetRandomHorizontalDirection(fireFrom, accuracyVariance);
             hit = rayShooter.ShootRay(fireFrom.position, dir);
             projectileShooter.Shoot(fireFrom, dir);

@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     public bool AddItem(Item item)
     {
         if (!HasItem(item))
+        {
             for (int i = 0; i < items.Length; i++)
             {
                 if (items[i] == null)
@@ -26,6 +27,11 @@ public class Inventory : MonoBehaviour
                     return true;
                 }
             }
+        }
+        else
+        {
+            // increase quantity (ex.: add ammo) instead of collecting the item
+        }
         return false;
     }
 
@@ -47,7 +53,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] != null && items[i].name == item.name)
+            if (items[i] != null && items[i].GetType() == item.GetType())
                 return true;
         }
         return false;

@@ -34,12 +34,11 @@ public class GreandeLauncher : Weapon
 
     public override void Use()
     {
-        if (ammo.ammo > 0 && CanUse())
+        if (CanUse() && ammo.SpendAmmo())
         {
             base.Use();
             Vector3 dir;
 
-            ammo.SpendAmmo();
             dir = rayShooter.GetRandomHorizontalDirection(fireFrom, accuracyVariance);
             dir = _angle * dir;
             projectileShooter.Shoot(fireFrom, dir);

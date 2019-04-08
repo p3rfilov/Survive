@@ -78,7 +78,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a050b3501fabd294c829ea1e588312e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 100
+  ammo: 5
+  magazine: 3
+  reloadTime: 3
+  maxAmmo: 20
+  magazineCapacity: 3
 --- !u!114 &374465333547409381
 MonoBehaviour:
   m_ObjectHideFlags: 0
