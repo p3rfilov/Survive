@@ -25,16 +25,22 @@ public class Ammo : MonoBehaviour
         return false;
     }
 
-    private IEnumerator Reload()
+    public IEnumerator Reload()
     {
-        reloading = true;
         int ammoToAdd = Mathf.Min(ammo, magazineCapacity);
+        reloading = true;
 
         print("Reloading");
         yield return new WaitForSeconds(reloadTime);
         ammo -= ammoToAdd;
         magazine += ammoToAdd;
 
+        reloading = false;
+    }
+
+    private void OnDisable()
+    {
+        // in case GameObject is disabled (switching weapons) during reloading
         reloading = false;
     }
 }
