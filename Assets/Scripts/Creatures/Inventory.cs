@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     public bool AddItem(Item item)
     {
-        if (!HasItem(item))
+        if (!Replenish(item))
         {
             for (int i = 0; i < items.Length; i++)
             {
@@ -27,10 +27,6 @@ public class Inventory : MonoBehaviour
                     return true;
                 }
             }
-        }
-        else
-        {
-            // increase quantity (ex.: add ammo) instead of collecting the item
         }
         return false;
     }
@@ -49,12 +45,33 @@ public class Inventory : MonoBehaviour
         return items[index];
     }
 
-    private bool HasItem(Item item)
+    private Item GetItem(Item item)
     {
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] != null && items[i].GetType() == item.GetType())
-                return true;
+                return items[i];
+        }
+        return null;
+    }
+
+    public bool Replenish(Item item)
+    {
+        Item invItem = GetItem(item);
+        Ammo invAmmo = invItem?.GetComponent<Ammo>();
+        Ammo newAmmo = item.GetComponent<Ammo>();
+
+        if (invAmmo != null && newAmmo != null)
+        {
+            if (invAmmo.ammoType == newAmmo.ammoType)
+            {
+                // need to check here for IUsable and swap items if we are only carrying ammo
+                if (invAmmo.AddAmmo(newAmmo.AllAmmo))
+                {
+                    item.gameObject.SetActive(false);
+                    return true;
+                }
+            }
         }
         return false;
     }

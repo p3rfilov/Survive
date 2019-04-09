@@ -25,6 +25,7 @@ public class Pistol : Weapon
     {
         base.Start();
         ammo = GetComponent<Ammo>();
+        ammo.ammoType = Ammo.AmmoType.P_Bullets;
         rayShooter = GetComponent<RayShooter>();
         forceApplier = GetComponent<ForceApplier>();
         projectileShooter = GetComponent<ProjectileShooter>();

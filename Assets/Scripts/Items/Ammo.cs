@@ -6,8 +6,12 @@ public class Ammo : MonoBehaviour
     public int ammo;
     public int magazine;
     public float reloadTime;
+    public AmmoType ammoType;
     public int maxAmmo;
     public int magazineCapacity;
+
+    public int AllAmmo { get { return ammo + magazine; } }
+    public enum AmmoType {P_Bullets, MG_Bullets, SG_Shells, Grenades, Mines, Propane};
 
     private bool reloading = false;
 
@@ -21,6 +25,16 @@ public class Ammo : MonoBehaviour
         else if (ammo > 0 && !reloading)
         {
             StartCoroutine(Reload());
+        }
+        return false;
+    }
+
+    public bool AddAmmo(int amount)
+    {
+        if (ammo < maxAmmo)
+        {
+            ammo = Mathf.Min(ammo + amount, maxAmmo);
+            return true;
         }
         return false;
     }
