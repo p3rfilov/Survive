@@ -2,6 +2,7 @@
 
 public class Inventory : MonoBehaviour
 {
+    public float dropDistance = 2f;
     public const int size = 5;
     public Item[] items = new Item[size];
 
@@ -40,6 +41,15 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void DropItem(Item item, bool active = true)
+    {
+        RemoveItem(item);
+        item.transform.SetParent(null);
+        item.gameObject.SetActive(active);
+        item.transform.position = transform.position + transform.forward * dropDistance;
+        item.HasOwner = !active;
+    }
+
     public Item GetItem(int index)
     {
         return items[index];
@@ -57,16 +67,23 @@ public class Inventory : MonoBehaviour
 
     public bool Replenish(Item item)
     {
-        Item invItem = GetItem(item);
-        Ammo invAmmo = invItem?.GetComponent<Ammo>();
+        Item inventoryItem = GetItem(item);
+        Ammo inventoryAmmo = inventoryItem?.GetComponent<Ammo>();
         Ammo newAmmo = item.GetComponent<Ammo>();
 
-        if (invAmmo != null && newAmmo != null)
+        if (inventoryAmmo != null && newAmmo != null)
         {
-            if (invAmmo.ammoType == newAmmo.ammoType)
+            if (inventoryAmmo.ammoType == newAmmo.ammoType)
             {
-                // need to check here for IUsable and swap items if we are only carrying ammo
-                if (invAmmo.AddAmmo(newAmmo.AllAmmo))
+                // swap items if picking up IUsable and we are only carrying ammo
+                // TODO: implementation feels wrong; separate inventory for ammo? initial idea was to have dropable/destructable ammo crates?
+                if (!(inventoryItem is IUsable) && item is IUsable)
+                {
+                    newAmmo.AddAmmo(inventoryAmmo.AllAmmo);
+                    DropItem(inventoryItem, false);
+                    return false;
+                }
+                else if (inventoryAmmo.AddAmmo(newAmmo.AllAmmo))
                 {
                     item.gameObject.SetActive(false);
                     return true;
