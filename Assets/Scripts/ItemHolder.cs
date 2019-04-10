@@ -38,7 +38,7 @@ public class ItemHolder : MonoBehaviour
 
     private void HoldIfEmpty()
     {
-        if (Object == null)
+        if (Object == null || !Object.activeSelf)
             CicleItems(1);
     }
 

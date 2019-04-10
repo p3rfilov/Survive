@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
                     item.HasOwner = true;
                     item.gameObject.SetActive(false);
                     items[i] = item;
+                    EventManager.RaiseOnItemCollected();
                     return true;
                 }
             }
@@ -65,11 +66,31 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
+    private Item GetItem(Ammo.AmmoType type)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            Ammo ammo = items[i]?.GetComponent<Ammo>();
+            if (ammo != null && ammo.ammoType == type)
+            {
+                return items[i];
+            }
+        }
+        return null;
+    }
+
     public bool Replenish(Item item)
     {
-        Item inventoryItem = GetItem(item);
-        Ammo inventoryAmmo = inventoryItem?.GetComponent<Ammo>();
-        Ammo newAmmo = item.GetComponent<Ammo>();
+        Ammo newAmmo = null;
+        Item inventoryItem = null;
+        Ammo inventoryAmmo = null;
+
+        newAmmo = item.GetComponent<Ammo>();
+        if (newAmmo != null)
+        {
+            inventoryItem = GetItem(newAmmo.ammoType);
+            inventoryAmmo = inventoryItem?.GetComponent<Ammo>();
+        }
 
         if (inventoryAmmo != null && newAmmo != null)
         {
@@ -80,7 +101,9 @@ public class Inventory : MonoBehaviour
                 if (!(inventoryItem is IUsable) && item is IUsable)
                 {
                     newAmmo.AddAmmo(inventoryAmmo.AllAmmo);
-                    DropItem(inventoryItem, false);
+                    inventoryItem.gameObject.SetActive(false);
+                    RemoveItem(inventoryItem);
+                    EventManager.RaiseOnItemCollected();
                     return false;
                 }
                 else if (inventoryAmmo.AddAmmo(newAmmo.AllAmmo))
