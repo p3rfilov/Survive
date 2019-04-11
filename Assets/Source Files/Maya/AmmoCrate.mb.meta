@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: 19a4fb3836d3d184fb24eda702cfb354
+guid: 2740e1a4452369f42aa4f9d41a53f766
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: left
+    100004: pCube1
     400000: //RootNode
-    2100000: 01 - Default
+    400002: left
+    400004: pCube1
+    2000000: left
+    2100000: AmmoCrate_mat
+    2100002: AmmCrate_mat
     2300000: //RootNode
+    2300002: pCube1
     3300000: //RootNode
-    4300000: Box001
-    7400000: Take 001
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+    3300002: pCube1
+    4300000: pCube1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -65,7 +70,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -92,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

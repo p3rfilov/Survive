@@ -1,16 +1,14 @@
 fileFormatVersion: 2
-guid: 6c0e4bdf83eec014892e3c3106654972
+guid: 06059a1d5930f1146a99be52dad8db8c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 01 - Default
+    2100000: AmmCrate_mat
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Box001
-    7400000: spinning
-    9500000: //RootNode
+    4300000: pCube1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -62,9 +60,9 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 1
-    previousCalculatedGlobalScale: 0.001
-    hasPreviousCalculatedGlobalScale: 1
+    useFileScale: 0
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -91,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
