@@ -54,7 +54,7 @@ public class Exploder : MonoBehaviour
                 var explosion = explosionPrefab.GetComponent<ParticleSystem>();
                 if (explosion != null)
                     explosion.Play();
-                Destroy(obj, explosion.main.duration);
+                PoolingManager.Remove(obj, explosion.main.duration);
             }
         }
     }

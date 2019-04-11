@@ -80,6 +80,11 @@ public class PlayerController : MonoBehaviour
                 itemHolder.CicleItems(-1);
             }
 
+            if (Input.GetButtonDown("Drop Item"))
+            {
+                itemHolder.DropCurrentItem();
+            }
+
             if (Input.GetButton("Fire1"))
             {
                 var usable = itemHolder.Object?.GetComponent<IUsable>();

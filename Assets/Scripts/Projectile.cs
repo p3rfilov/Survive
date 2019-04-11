@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
         col = GetComponent<Collider>();
         col.isTrigger = true;
         body = GetComponent<Rigidbody>();
-        Destroy(gameObject, lifetime);
+        PoolingManager.Remove(gameObject, lifetime);
     }
 
     private void OnTriggerEnter(Collider other)

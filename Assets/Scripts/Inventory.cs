@@ -2,7 +2,6 @@
 
 public class Inventory : MonoBehaviour
 {
-    public float dropDistance = 2f;
     public const int size = 5;
     public Item[] items = new Item[size];
 
@@ -40,15 +39,6 @@ public class Inventory : MonoBehaviour
             if (items[i] == item)
                 items[i] = null;
         }
-    }
-
-    public void DropItem(Item item, bool active = true)
-    {
-        RemoveItem(item);
-        item.transform.SetParent(null);
-        item.gameObject.SetActive(active);
-        item.transform.position = transform.position + transform.forward * dropDistance;
-        item.HasOwner = !active;
     }
 
     public Item GetItem(int index)
@@ -101,8 +91,8 @@ public class Inventory : MonoBehaviour
                 if (!(inventoryItem is IUsable) && item is IUsable)
                 {
                     newAmmo.AddAmmo(inventoryAmmo.AllAmmo);
-                    inventoryItem.gameObject.SetActive(false);
                     RemoveItem(inventoryItem);
+                    ItemDropper.Drop(inventoryItem);
                     EventManager.RaiseOnItemCollected();
                     return false;
                 }

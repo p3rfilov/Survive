@@ -36,6 +36,13 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
+    public void DropCurrentItem()
+    {
+        ItemDropper.Drop(Object?.GetComponent<Item>(), true);
+        inventory.RemoveItem(Object?.GetComponent<Item>());
+        Object = null;
+    }
+
     private void HoldIfEmpty()
     {
         if (Object == null || !Object.activeSelf)

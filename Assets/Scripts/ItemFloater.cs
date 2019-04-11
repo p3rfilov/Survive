@@ -17,8 +17,9 @@ public class ItemFloater : MonoBehaviour
         if (item != null)
         {
             tempPos = transform.position;
-            yPos = transform.position.y;
+            yPos = tempPos.y;
         }
+        EventManager.onItemDropped += RecordPosition;
     }
 
     private void Update()
@@ -28,6 +29,15 @@ public class ItemFloater : MonoBehaviour
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
             tempPos.y = yPos + height + amplitude * Mathf.Sin(wobbleSpeed * Time.time);
             transform.position = tempPos;
+        }
+    }
+
+    private void RecordPosition()
+    {
+        if (item != null && item.HasOwner)
+        {
+            tempPos = transform.position;
+            yPos = tempPos.y;
         }
     }
 }
