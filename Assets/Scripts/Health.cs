@@ -9,6 +9,7 @@ public class Health : MonoBehaviour, IDamageable
 
     private Rigidbody body;
     private CapsuleCollider coll;
+    private bool isAlive = true;
 
     private void Start()
     {
@@ -21,7 +22,9 @@ public class Health : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-            StartCoroutine(Kill());
+            if (isAlive)
+                StartCoroutine(Kill());
+            isAlive = false;
         }
     }
 

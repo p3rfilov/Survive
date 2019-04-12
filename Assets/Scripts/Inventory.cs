@@ -43,7 +43,9 @@ public class Inventory : MonoBehaviour
 
     public Item GetItem(int index)
     {
-        return items[index];
+        if (index >= 0 && (index - 1 <= items.Length))
+            return items[index];
+        return null;
     }
 
     private Item GetItem(Item item)
