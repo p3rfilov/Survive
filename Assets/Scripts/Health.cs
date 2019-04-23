@@ -39,6 +39,8 @@ public class Health : MonoBehaviour, IDamageable
             Vector3 angVelocity = body.angularVelocity;
             float mass = body.mass;
 
+            //body.isKinematic = true;
+            //coll.enabled = false;
             Destroy(body);
             Destroy(coll);
 
@@ -62,8 +64,7 @@ public class Health : MonoBehaviour, IDamageable
         }
         else
         {
-            // TODO: pooling system
-            Destroy(gameObject);
+            PoolingManager.Remove(gameObject);
         }
     }
 
@@ -90,8 +91,7 @@ public class Health : MonoBehaviour, IDamageable
         }
         if (color.a <= 0)
         {
-            // TODO: pooling system
-            Destroy(gameObject);
+            PoolingManager.Remove(gameObject);
         }
     }
 }

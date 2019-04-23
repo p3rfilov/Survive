@@ -10,7 +10,7 @@ public class Exploder : MonoBehaviour
     public GameObject explosionPrefab;
 
     private DamageCalculator damageCalculator;
-    private bool quitting = false;
+    private bool quitting;
 
     private void Start()
     {
@@ -24,7 +24,8 @@ public class Exploder : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!quitting)  // TODO: implement pooling system instead of destrying objects
+        // TODO: implement pooling system instead of destrying objects
+        if (!quitting)
         {
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
