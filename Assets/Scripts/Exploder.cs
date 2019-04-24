@@ -25,38 +25,35 @@ public class Exploder : MonoBehaviour
     private void OnDestroy()
     {
         // TODO: implement pooling system instead of destrying objects
-        if (!quitting)
+        Vector3 explosionPos = transform.position;
+        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+        foreach (Collider hit in colliders)
         {
-            Vector3 explosionPos = transform.position;
-            Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
-            foreach (Collider hit in colliders)
+            if (hit.GetComponent<Projectile>() == null)
             {
-                if (hit.GetComponent<Projectile>() == null)
+                var body = hit.GetComponent<Rigidbody>();
+                var damageable = hit.GetComponent<IDamageable>();
+
+                if (damageable != null)
                 {
-                    var body = hit.GetComponent<Rigidbody>();
-                    var damageable = hit.GetComponent<IDamageable>();
+                    int damage = damageCalculator.CalculateRandomDamage();
+                    damageable.TakeDamage(damage);
+                }
 
-                    if (damageable != null)
-                    {
-                        int damage = damageCalculator.CalculateRandomDamage();
-                        damageable.TakeDamage(damage);
-                    }
-
-                    if (body != null)
-                    {
-                        body.AddExplosionForce(force, explosionPos, radius, lift);
-                    }
+                if (body != null)
+                {
+                    body.AddExplosionForce(force, explosionPos, radius, lift);
                 }
             }
+        }
 
-            if (explosionPrefab != null)
-            {
-                var obj = Instantiate(explosionPrefab, transform.position, transform.rotation);
-                var explosion = explosionPrefab.GetComponent<ParticleSystem>();
-                if (explosion != null)
-                    explosion.Play();
-                PoolingManager.Remove(obj, explosion.main.duration);
-            }
+        if (!quitting && explosionPrefab != null)
+        {
+            var obj = Instantiate(explosionPrefab, transform.position, transform.rotation);
+            var explosion = explosionPrefab.GetComponent<ParticleSystem>();
+            if (explosion != null)
+                explosion.Play();
+            PoolingManager.Remove(obj, explosion.main.duration);
         }
     }
 }
