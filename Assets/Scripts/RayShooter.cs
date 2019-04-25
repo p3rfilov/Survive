@@ -7,9 +7,10 @@ public class RayShooter : MonoBehaviour
     /// <summary>
     /// Returns a random horizontal direction based on accuracy parameter.
     /// </summary>
-    public Vector3 GetRandomHorizontalDirection(Transform origin, float accuracy)
+    public Vector3 GetRandomDirection(Transform origin, float accuracyVariance)
     {
-        Vector3 direction = Quaternion.AngleAxis(Random.Range(0f, accuracy), origin.up) * origin.forward;
+        Vector3 direction = Quaternion.AngleAxis(Random.Range(0f, accuracyVariance), origin.up) * origin.forward;
+        direction = Quaternion.AngleAxis(Random.Range(0f, accuracyVariance), origin.right) * direction;
         return direction;
     }
 

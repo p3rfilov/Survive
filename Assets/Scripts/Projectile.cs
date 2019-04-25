@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
 {
     public float lifetime = 0.1f;
     public bool destroyOnCollision = true;
+    public bool ignoreOtherProjectiles = true;
 
     private Collider col;
     private Rigidbody body;
@@ -23,6 +24,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (destroyOnCollision)
+        {
+            var _projectile = other.GetComponent<Projectile>();
+            if (ignoreOtherProjectiles && _projectile != null)
+                return;
             PoolingManager.Remove(gameObject);
+        }
     }
 }

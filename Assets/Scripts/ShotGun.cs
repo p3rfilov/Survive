@@ -6,19 +6,22 @@
 [RequireComponent(typeof(ForceApplier))]
 [RequireComponent(typeof(ProjectileShooter))]
 [RequireComponent(typeof(DamageCalculator))]
-public class Pistol : Weapon
+public class ShotGun : Weapon
 {
+    public int projectileCount;
+
     private Ammo ammo;
     private RayShooter rayShooter;
     private ForceApplier forceApplier;
     private ProjectileShooter projectileShooter;
     private DamageCalculator damageCalculator;
 
-    public Pistol()
+    public ShotGun()
     {
-        accuracyVariance = 1f;
+        projectileCount = 12;
+        accuracyVariance = 10f;
         automatic = true;
-        fireRate = 2f;
+        fireRate = 1f;
     }
 
     protected override void Start()
@@ -39,19 +42,22 @@ public class Pistol : Weapon
             Vector3 dir;
             Transform hit;
 
-            dir = rayShooter.GetRandomDirection(fireFrom, accuracyVariance);
-            hit = rayShooter.ShootRay(fireFrom.position, dir);
-            projectileShooter.Shoot(fireFrom, dir);
-            if (hit != null)
+            for (int i = 0; i < projectileCount; i++)
             {
-                var body = hit.GetComponent<Rigidbody>();
-                var damageable = hit.GetComponent<IDamageable>();
-
-                forceApplier.ApplyForce(body, dir);
-                if (damageable != null)
+                dir = rayShooter.GetRandomDirection(fireFrom, accuracyVariance);
+                hit = rayShooter.ShootRay(fireFrom.position, dir);
+                projectileShooter.Shoot(fireFrom, dir);
+                if (hit != null)
                 {
-                    int damage = damageCalculator.CalculateRandomDamage();
-                    damageable.TakeDamage(damage);
+                    var body = hit.GetComponent<Rigidbody>();
+                    var damageable = hit.GetComponent<IDamageable>();
+
+                    forceApplier.ApplyForce(body, dir);
+                    if (damageable != null)
+                    {
+                        int damage = damageCalculator.CalculateRandomDamage();
+                        damageable.TakeDamage(damage);
+                    }
                 }
             }
         }

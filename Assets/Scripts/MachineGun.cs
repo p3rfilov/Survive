@@ -6,7 +6,7 @@
 [RequireComponent(typeof(ForceApplier))]
 [RequireComponent(typeof(ProjectileShooter))]
 [RequireComponent(typeof(DamageCalculator))]
-public class Pistol : Weapon
+public class MachineGun : Weapon
 {
     private Ammo ammo;
     private RayShooter rayShooter;
@@ -14,11 +14,11 @@ public class Pistol : Weapon
     private ProjectileShooter projectileShooter;
     private DamageCalculator damageCalculator;
 
-    public Pistol()
+    public MachineGun()
     {
         accuracyVariance = 1f;
         automatic = true;
-        fireRate = 2f;
+        fireRate = 6f;
     }
 
     protected override void Start()

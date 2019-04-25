@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  timeUntilFade: 3
+  fadeTime: 3
 --- !u!114 &274275502101876129
 MonoBehaviour:
   m_ObjectHideFlags: 0

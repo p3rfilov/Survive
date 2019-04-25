@@ -81,7 +81,7 @@ MonoBehaviour:
   ammo: 0
   magazine: 3
   reloadTime: 3
-  ammoType: 2
+  ammoType: 3
   maxAmmo: 20
   magazineCapacity: 3
 --- !u!114 &374465333547409381

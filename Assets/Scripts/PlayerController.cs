@@ -47,15 +47,22 @@ public class PlayerController : MonoBehaviour
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
+                    Vector3 targetPosition;
                     if (hit.transform.CompareTag("Ground"))
                     {
-                        Vector3 targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+                        targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
                         transform.LookAt(targetPosition);
+                        itemHolder.holdingHand.rotation = transform.rotation;
                     }
-                    else if (hit.transform.CompareTag("Enemy"))
+                    else if (hit.transform.GetComponent<Health>() != null)  // something killable
                     {
-                        Vector3 targetPosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
+                        targetPosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
                         transform.LookAt(targetPosition);
+                        var _collider = hit.transform.GetComponent<Collider>();
+                        if (_collider != null)
+                        {
+                            itemHolder.holdingHand.LookAt(new Vector3(targetPosition.x, _collider.bounds.center.y, targetPosition.z));
+                        }
                     }
                 }
             }

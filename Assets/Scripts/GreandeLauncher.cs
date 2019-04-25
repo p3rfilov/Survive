@@ -27,7 +27,6 @@ public class GreandeLauncher : Weapon
     {
         base.Start();
         ammo = GetComponent<Ammo>();
-        ammo.ammoType = Ammo.AmmoType.Grenades;
         rayShooter = GetComponent<RayShooter>();
         projectileShooter = GetComponent<ProjectileShooter>();
         _angle = Quaternion.AngleAxis(upAngle, Vector3.left);
@@ -40,7 +39,7 @@ public class GreandeLauncher : Weapon
             base.Use();
             Vector3 dir;
 
-            dir = rayShooter.GetRandomHorizontalDirection(fireFrom, accuracyVariance);
+            dir = rayShooter.GetRandomDirection(fireFrom, accuracyVariance);
             dir = _angle * dir;
             projectileShooter.Shoot(fireFrom, dir);
         }

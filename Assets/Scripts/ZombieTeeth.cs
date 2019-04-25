@@ -33,7 +33,7 @@ public class ZombieTeeth : Weapon
             Vector3 dir;
             Transform hit;
 
-            dir = rayShooter.GetRandomHorizontalDirection(fireFrom, accuracyVariance);
+            dir = rayShooter.GetRandomDirection(fireFrom, accuracyVariance);
             hit = rayShooter.ShootRay(fireFrom.position, dir);
             if (hit != null)
             {

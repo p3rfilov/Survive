@@ -77,6 +77,11 @@ PrefabInstance:
       propertyPath: ammoType
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: maxAmmo
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 1735410551754458051, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
