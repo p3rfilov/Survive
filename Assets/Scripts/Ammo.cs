@@ -20,11 +20,11 @@ public class Ammo : MonoBehaviour
         if (magazine > 0)
         {
             magazine--;
+            if (magazine == 0 && ammo > 0 && !reloading)
+            {
+                StartCoroutine(Reload());
+            }
             return true;
-        }
-        else if (ammo > 0 && !reloading)
-        {
-            StartCoroutine(Reload());
         }
         return false;
     }
@@ -44,12 +44,13 @@ public class Ammo : MonoBehaviour
         int ammoToAdd = Mathf.Min(ammo, magazineCapacity);
         reloading = true;
 
-        print("Reloading");
+        print("Reloading...");
         yield return new WaitForSeconds(reloadTime);
         ammo -= ammoToAdd;
         magazine += ammoToAdd;
 
         reloading = false;
+        print("Reloaded!");
     }
 
     private void OnDisable()

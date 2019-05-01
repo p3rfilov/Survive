@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
