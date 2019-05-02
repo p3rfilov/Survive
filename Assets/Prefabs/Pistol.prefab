@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2816888851191952502}
   - component: {fileID: 5335669853983508906}
-  - component: {fileID: 7514308103718529373}
+  - component: {fileID: 8227148951186551162}
   - component: {fileID: 7679768771473204117}
   - component: {fileID: 801489696664252300}
   - component: {fileID: 5302377294369496767}
   - component: {fileID: 3565771656928409901}
-  - component: {fileID: 8227148951186551162}
   - component: {fileID: 2958502133073072359}
   m_Layer: 0
   m_Name: Pistol
@@ -52,7 +51,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.1, z: 0.15}
---- !u!114 &7514308103718529373
+--- !u!114 &8227148951186551162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,12 +60,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 5112353223541393577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f663486d7dcaf114db9bd9d2a614a7d9, type: 3}
+  m_Script: {fileID: 11500000, guid: d5971ba4e7a6922468a34370c4d4d0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   automatic: 1
   fireRate: 2
   accuracyVariance: 1
+  dealDamage: 1
+  verticalAngle: 0
+  projectile: {fileID: 3475116895781377300, guid: c7186da0c8a814d49975252a47db86a3,
+    type: 3}
+  projectileSpeed: 10000
+  projectileCount: 1
 --- !u!114 &7679768771473204117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,21 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDamage: 2
   maxDamage: 5
---- !u!114 &8227148951186551162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5112353223541393577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5971ba4e7a6922468a34370c4d4d0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 3475116895781377300, guid: c7186da0c8a814d49975252a47db86a3,
-    type: 3}
-  projectileSpeed: 10000
 --- !u!114 &2958502133073072359
 MonoBehaviour:
   m_ObjectHideFlags: 0

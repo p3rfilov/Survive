@@ -5,6 +5,7 @@
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
+    [Tooltip("0 = infinity")]
     public float lifetime = 0.1f;
     public bool destroyOnCollision = true;
     public bool ignoreOtherProjectiles = true;
@@ -18,7 +19,8 @@ public class Projectile : MonoBehaviour
         col = GetComponent<Collider>();
         col.isTrigger = true;
         body = GetComponent<Rigidbody>();
-        PoolingManager.Remove(gameObject, lifetime);
+        if (lifetime > 0)
+            PoolingManager.Remove(gameObject, lifetime);
     }
 
     private void OnTriggerEnter(Collider other)

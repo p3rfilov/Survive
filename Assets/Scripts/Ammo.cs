@@ -26,6 +26,10 @@ public class Ammo : MonoBehaviour
             }
             return true;
         }
+        else if (ammo > 0 && !reloading)
+        {
+            StartCoroutine(Reload());
+        }
         return false;
     }
 

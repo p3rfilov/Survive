@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18647307bb8b8e4da8c79589d0a2614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 3
+  lifetime: 0
   destroyOnCollision: 0
   ignoreOtherProjectiles: 1
 --- !u!114 &6995055442704995493
