@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpHeight = 5f;
     public LayerMask ground;
+    public LayerMask dontAimAt;
 
     private float groundDistance = 0.2f;
     private bool isGrounded = true;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
                 RaycastHit hit;
 
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~dontAimAt))
                 {
                     Vector3 targetPosition;
                     if (hit.transform.CompareTag("Ground"))
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
                         transform.LookAt(targetPosition);
                         itemHolder.holdingHand.rotation = transform.rotation;
                     }
-                    else if (hit.transform.GetComponent<Health>() != null)  // something killable
+                    else if (!hit.transform.CompareTag("Player") && hit.transform.GetComponent<Health>() != null)  // something killable, except self
                     {
                         targetPosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
                         transform.LookAt(targetPosition);
