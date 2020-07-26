@@ -4,23 +4,24 @@ using UnityEngine;
 public class Ammo : MonoBehaviour
 {
     public int ammo;
-    public int magazine;
+    public int clip;
     public float reloadTime;
     public AmmoType ammoType;
     public int maxAmmo;
     public int magazineCapacity;
 
-    public int AllAmmo { get { return ammo + magazine; } }
+    public int AllAmmo { get { return ammo + clip; } }
     public enum AmmoType {P_Bullets, MG_Bullets, SG_Shells, Grenades, Mines, Propane};
 
     private bool reloading = false;
 
     public bool SpendAmmo()
     {
-        if (magazine > 0)
+        if (clip > 0)
         {
-            magazine--;
-            if (magazine == 0 && ammo > 0 && !reloading)
+            clip--;
+            EventManager.RaiseOnPlayerCurrentItemChanged();
+            if (clip == 0 && ammo > 0 && !reloading)
             {
                 StartCoroutine(Reload());
             }
@@ -51,10 +52,11 @@ public class Ammo : MonoBehaviour
         print("Reloading...");
         yield return new WaitForSeconds(reloadTime);
         ammo -= ammoToAdd;
-        magazine += ammoToAdd;
+        clip += ammoToAdd;
 
         reloading = false;
         print("Reloaded!");
+        EventManager.RaiseOnPlayerCurrentItemChanged();
     }
 
     private void OnDisable()

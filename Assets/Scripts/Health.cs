@@ -20,6 +20,7 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
+        EventManager.RaiseOnPlayerHealthChanged();
         if (health <= 0)
         {
             if (isAlive)

@@ -10,14 +10,19 @@ public class ItemHolder : MonoBehaviour
     private Inventory inventory;
     private int currentIndex = 0;
 
-    private void Start()
+    private void Start ()
     {
         inventory = GetComponent<Inventory>();
         EventManager.onItemCollected += HoldIfEmpty;
         CicleItems(currentIndex);
     }
 
-    public void CicleItems(int index)
+    public Item GetItem ()
+    {
+        return Object?.GetComponent<Item>();
+    }
+
+    public void CicleItems (int index)
     {
         currentIndex += index;
         if (currentIndex > inventory.Size - 1)
@@ -34,22 +39,24 @@ public class ItemHolder : MonoBehaviour
         {
             CicleItems(currentIndex);
         }
+        EventManager.RaiseOnPlayerCurrentItemChanged();
     }
 
-    public void DropCurrentItem()
+    public void DropCurrentItem ()
     {
-        ItemDropper.Drop(Object?.GetComponent<Item>(), true);
-        inventory.RemoveItem(Object?.GetComponent<Item>());
+        Item item = GetItem();
+        ItemDropper.Drop(item, true);
+        inventory.RemoveItem(item);
         Object = null;
     }
 
-    private void HoldIfEmpty()
+    private void HoldIfEmpty ()
     {
         if (Object == null || !Object.activeSelf)
             CicleItems(1);
     }
 
-    private void HoldItem(Item item)
+    private void HoldItem (Item item)
     {
         if (Object != null)
             Object.SetActive(false);
@@ -64,7 +71,7 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
-    private bool IsArrayEmpty(Item[] array)
+    private bool IsArrayEmpty (Item[] array)
     {
         for (int i = 0; i < array.Length; i++)
         {
