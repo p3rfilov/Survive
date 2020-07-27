@@ -1610,6 +1610,56 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.130005
       objectReference: {fileID: 0}
+    - target: {fileID: 7716383446623053666, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013700244913709830, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 14.299988
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013700244913709830, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -172.70001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1886006349944740058, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339046958418327600, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599975076054596692, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599975076054596692, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -172.70001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349308400575175431, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.210022
+      objectReference: {fileID: 0}
+    - target: {fileID: 4349308400575175431, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.2330933
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512706655466887348, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de38fbdd0066cd143b59bffaff257da0, type: 3}
 --- !u!1001 &8594612186331000336
