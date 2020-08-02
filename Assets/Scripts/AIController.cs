@@ -28,7 +28,7 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
-        // TODO: Implement a finate state machine
+        // TODO: Implement a finite state machine
         if (health.health <= 0)
         {
             agent.enabled = false;

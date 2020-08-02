@@ -101,6 +101,7 @@ public class Inventory : MonoBehaviour
                 else if (inventoryAmmo.AddAmmo(newAmmo.AllAmmo))
                 {
                     item.gameObject.SetActive(false);
+                    EventManager.RaiseOnItemCollected();
                     return true;
                 }
             }

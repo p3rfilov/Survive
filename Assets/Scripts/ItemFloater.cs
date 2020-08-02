@@ -19,7 +19,7 @@ public class ItemFloater : MonoBehaviour
             tempPos = transform.position;
             yPos = tempPos.y;
         }
-        EventManager.onItemDropped += RecordPosition;
+        EventManager.OnItemDropped += RecordPosition;
     }
 
     private void Update()

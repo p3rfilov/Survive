@@ -1,34 +1,40 @@
-﻿using UnityEngine;
-
-public class EventManager : MonoBehaviour
+﻿
+public class EventManager
 {
-    public delegate void OnItemCollected ();
-    public delegate void OnItemDropped ();
-    public delegate void OnPlayerHealthChanged ();
-    public delegate void OnPlayerCurrentItemChanged ();
+    public delegate void ItemCollectedCallback ();
+    public delegate void ItemDroppedCallback ();
+    public delegate void PlayerHealthChangedCallback ();
+    public delegate void PlayerCurrentItemChangedCallback ();
+    public delegate void PlayerWeaponReloadingCallback (bool reloading);
 
-    public static event OnItemCollected onItemCollected;
-    public static event OnItemDropped onItemDropped;
-    public static event OnPlayerHealthChanged onPlayerHealthChanged;
-    public static event OnPlayerCurrentItemChanged onPlayerCurrentItemChanged;
+    public static event ItemCollectedCallback OnItemCollected;
+    public static event ItemDroppedCallback OnItemDropped;
+    public static event PlayerHealthChangedCallback OnPlayerHealthChanged;
+    public static event PlayerCurrentItemChangedCallback OnPlayerCurrentItemChanged;
+    public static event PlayerWeaponReloadingCallback OnPlayerWeaponReloadingStateChanged;
 
     public static void RaiseOnItemCollected ()
     {
-        onItemCollected?.Invoke();
+        OnItemCollected?.Invoke();
     }
 
     public static void RaiseOnItemDropped ()
     {
-        onItemDropped?.Invoke();
+        OnItemDropped?.Invoke();
     }
 
     public static void RaiseOnPlayerHealthChanged ()
     {
-        onPlayerHealthChanged?.Invoke();
+        OnPlayerHealthChanged?.Invoke();
     }
 
     public static void RaiseOnPlayerCurrentItemChanged ()
     {
-        onPlayerCurrentItemChanged?.Invoke();
+        OnPlayerCurrentItemChanged?.Invoke();
+    }
+
+    public static void RaiseOnPlayerWeaponReloadingStateChanged (bool reloading)
+    {
+        OnPlayerWeaponReloadingStateChanged?.Invoke(reloading);
     }
 }

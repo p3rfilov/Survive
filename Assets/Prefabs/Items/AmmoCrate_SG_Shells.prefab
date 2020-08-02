@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4921501239579036775
+--- !u!1001 &6180376412488087318
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3864492344950974288, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
       propertyPath: m_Name
-      value: AmmoCrate_Grenades
+      value: AmmoCrate_SG_Shells
       objectReference: {fileID: 0}
     - target: {fileID: 4451244720730353058, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
@@ -67,25 +67,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+    - target: {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
-      propertyPath: ammo
-      value: 5
-      objectReference: {fileID: 0}
+      propertyPath: Icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 13d8bbe10161b1b46bb58c6dfa79eac4,
+        type: 3}
+    - target: {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 13d8bbe10161b1b46bb58c6dfa79eac4,
+        type: 3}
     - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
       propertyPath: ammoType
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
       propertyPath: maxAmmo
-      value: 20
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: ammo
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1735410551754458051, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d756f3fb75658d4f907e3764fbe2cd7, type: 2}
+      objectReference: {fileID: 2100000, guid: 0f8775decd0c3114fb3f3ae0d18100e0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40e41cf5a8b0c34dabbe7342f6db10a, type: 3}

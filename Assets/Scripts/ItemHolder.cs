@@ -6,15 +6,15 @@ public class ItemHolder : MonoBehaviour
 {
     public Transform holdingHand;
     public GameObject Object { get; private set; }
+    public int Index { get; private set; } = 0;
 
     private Inventory inventory;
-    private int currentIndex = 0;
 
     private void Start ()
     {
         inventory = GetComponent<Inventory>();
-        EventManager.onItemCollected += HoldIfEmpty;
-        CicleItems(currentIndex);
+        EventManager.OnItemCollected += HoldIfEmpty;
+        CicleItems(Index);
     }
 
     public Item GetItem ()
@@ -24,20 +24,20 @@ public class ItemHolder : MonoBehaviour
 
     public void CicleItems (int index)
     {
-        currentIndex += index;
-        if (currentIndex > inventory.Size - 1)
-            currentIndex = 0;
-        if (currentIndex < 0)
-            currentIndex = inventory.Size - 1;
+        Index += index;
+        if (Index > inventory.Size - 1)
+            Index = 0;
+        if (Index < 0)
+            Index = inventory.Size - 1;
 
-        Item item = inventory.GetItem(currentIndex);
+        Item item = inventory.GetItem(Index);
         if (item != null)
         {
             HoldItem(item);
         }
         else if (!IsArrayEmpty(inventory.AllItems))
         {
-            CicleItems(currentIndex);
+            CicleItems(Index);
         }
         EventManager.RaiseOnPlayerCurrentItemChanged();
     }

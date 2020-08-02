@@ -49,13 +49,13 @@ public class Ammo : MonoBehaviour
         int ammoToAdd = Mathf.Min(ammo, magazineCapacity);
         reloading = true;
 
-        print("Reloading...");
+        EventManager.RaiseOnPlayerWeaponReloadingStateChanged(true);
         yield return new WaitForSeconds(reloadTime);
         ammo -= ammoToAdd;
         clip += ammoToAdd;
 
         reloading = false;
-        print("Reloaded!");
+        EventManager.RaiseOnPlayerWeaponReloadingStateChanged(false);
         EventManager.RaiseOnPlayerCurrentItemChanged();
     }
 
