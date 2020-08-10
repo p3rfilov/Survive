@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Ammo))]
@@ -10,6 +11,8 @@ public class ProjectileShooter : Weapon
     public Projectile projectile;
     public float projectileSpeed;
     public int projectileCount;
+    public Light muzzleFlash;
+    public float flashDuration;
 
     private Ammo ammo;
     private RayShooter rayShooter;
@@ -42,6 +45,8 @@ public class ProjectileShooter : Weapon
         if (CanUse() && ammo.SpendAmmo())
         {
             base.Use();
+            MuzzleFlash();
+
             Vector3 dir;
             Transform hit;
 
@@ -79,5 +84,20 @@ public class ProjectileShooter : Weapon
             Physics.IgnoreCollision(_projectile.GetComponent<Collider>(), GetComponent<Collider>());
             body.AddForce(direction * projectileSpeed);
         }
+    }
+
+    public void MuzzleFlash ()
+    {
+        if (muzzleFlash != null)
+        {
+            StartCoroutine(MuzzleFlashCR());
+        }
+    }
+
+    private IEnumerator MuzzleFlashCR ()
+    {
+        muzzleFlash.enabled = true;
+        yield return new WaitForSeconds(flashDuration);
+        muzzleFlash.enabled = false;
     }
 }

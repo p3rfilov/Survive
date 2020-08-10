@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3307051670051892316}
   - component: {fileID: 6829553017567655022}
   m_Layer: 0
-  m_Name: Zombie_Teeth
+  m_Name: ZombieTeeth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,8 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2365a3d2a56792a45a478651ce8c0e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   automatic: 1
-  fireDelay: 3
+  fireRate: 1
   accuracyVariance: 0
 --- !u!114 &4026441293923528601
 MonoBehaviour:

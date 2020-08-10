@@ -5,10 +5,14 @@ using UnityEngine;
 public class CameraTarget : MonoBehaviour
 {
     public GameObject target;
+    public float yOffset;
 
     void Update()
     {
+        var pos = new Vector3();
+
         if (target != null)
-            transform.position = target.transform.position;
+            pos = target.transform.position;
+            transform.position = new Vector3(pos.x, pos.y + yOffset, pos.z);
     }
 }
