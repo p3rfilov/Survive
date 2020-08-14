@@ -737,6 +737,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7318430943054573624, guid: de38fbdd0066cd143b59bffaff257da0,
+        type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 587895403}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de38fbdd0066cd143b59bffaff257da0, type: 3}
 --- !u!1001 &473111297
@@ -2333,6 +2338,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4104118b9c7f8a468bcf078c2a9ee03, type: 3}
+--- !u!20 &587895403 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7649909507175033359, guid: 15081d70591b3ea4a99675e26512a8b1,
+    type: 3}
+  m_PrefabInstance: {fileID: 2046435606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &588843771
 GameObject:
   m_ObjectHideFlags: 0
