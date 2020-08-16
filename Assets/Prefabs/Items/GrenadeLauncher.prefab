@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 374465333547409380}
   - component: {fileID: 374465333547409381}
   - component: {fileID: 774696128358370886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703060837830522943}
   - component: {fileID: 4290227176623054895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzleFlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grenade_Launcher_Model
       objectReference: {fileID: 0}
+    - target: {fileID: 6078080929774680239, guid: 4f2241d4aac7e244180012c81f8a8daa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8134069317716473183, guid: 4f2241d4aac7e244180012c81f8a8daa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -274,6 +279,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 871943169640430736, guid: 4f2241d4aac7e244180012c81f8a8daa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2419437567787816821, guid: 4f2241d4aac7e244180012c81f8a8daa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5364285709419094228, guid: 4f2241d4aac7e244180012c81f8a8daa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761962643110167783, guid: 4f2241d4aac7e244180012c81f8a8daa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2241d4aac7e244180012c81f8a8daa, type: 3}

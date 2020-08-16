@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 374465333547409380}
   - component: {fileID: 374465333547409381}
   - component: {fileID: 774696128358370886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MineThrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5971ba4e7a6922468a34370c4d4d0b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   automatic: 1
   fireRate: 0.5
   accuracyVariance: 1
@@ -70,6 +71,8 @@ MonoBehaviour:
     type: 3}
   projectileSpeed: 2000
   projectileCount: 1
+  muzzleFlash: {fileID: 0}
+  flashDuration: 0
 --- !u!114 &374465333547409380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammo: 0
-  magazine: 3
+  clip: 0
   reloadTime: 3
   ammoType: 4
   maxAmmo: 20
@@ -124,6 +127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mine_Thrower_Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 6078080929774680239, guid: 0f31a36c77260814fbd210fc81715780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8134069317716473183, guid: 0f31a36c77260814fbd210fc81715780,
         type: 3}
@@ -179,6 +187,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8055316722059920227, guid: 0f31a36c77260814fbd210fc81715780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761962643110167783, guid: 0f31a36c77260814fbd210fc81715780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 871943169640430736, guid: 0f31a36c77260814fbd210fc81715780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 371974266960377719, guid: 0f31a36c77260814fbd210fc81715780,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f31a36c77260814fbd210fc81715780, type: 3}

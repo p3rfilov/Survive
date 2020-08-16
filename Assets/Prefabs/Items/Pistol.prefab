@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2279898912168357005}
   - component: {fileID: 4545809050624547081}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzleFlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5302377294369496767}
   - component: {fileID: 3565771656928409901}
   - component: {fileID: 2958502133073072359}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,6 +250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol_Model
       objectReference: {fileID: 0}
+    - target: {fileID: 6078080929774680239, guid: 37cc057b185db2c4196242a857307e2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8134069317716473183, guid: 37cc057b185db2c4196242a857307e2d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -304,6 +309,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247009790350920034, guid: 37cc057b185db2c4196242a857307e2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 871943169640430736, guid: 37cc057b185db2c4196242a857307e2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761962643110167783, guid: 37cc057b185db2c4196242a857307e2d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37cc057b185db2c4196242a857307e2d, type: 3}
