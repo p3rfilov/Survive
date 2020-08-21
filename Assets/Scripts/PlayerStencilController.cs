@@ -4,15 +4,14 @@ using UnityEngine;
 public class PlayerStencilController : MonoBehaviour
 {
     public Camera playerCamera;
-    public LayerMask layerMask;
     public GameObject stencilObject;
     public float minScale;
     public float scaleTime;
 
     Collider playerCollider;
     float maxScale;
-    string currentTag;
     bool scaling;
+    string currentTag;
 
     void Start ()
     {
@@ -27,12 +26,12 @@ public class PlayerStencilController : MonoBehaviour
             RaycastHit hit;
 
             Vector3 vector = (stencilObject.transform.position - playerCamera.transform.position).normalized;
-            if (Physics.Raycast(playerCamera.transform.position, vector, out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(playerCamera.transform.position, vector, out hit, Mathf.Infinity))
             {
-                if (hit.transform.tag != currentTag && !scaling)
+                if (!scaling && currentTag != hit.transform.tag)
                 {
                     currentTag = hit.transform.tag;
-                    if (hit.transform.tag == playerCollider.tag)
+                    if (hit.collider.tag == playerCollider.tag)
                     {
                         StartCoroutine(ScaleDownAnimation(true));
                     }

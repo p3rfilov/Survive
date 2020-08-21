@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 174160775071739190}
   - component: {fileID: 5590862027288503951}
   - component: {fileID: 3715228402423247702}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AmmoCrate_P_Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,6 +150,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 06059a1d5930f1146a99be52dad8db8c, type: 3}
       propertyPath: m_Name
       value: AmmoCrate
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 06059a1d5930f1146a99be52dad8db8c, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 06059a1d5930f1146a99be52dad8db8c, type: 3}
       propertyPath: m_LocalPosition.x

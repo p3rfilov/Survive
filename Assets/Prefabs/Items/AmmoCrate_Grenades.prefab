@@ -12,6 +12,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: AmmoCrate_Grenades
       objectReference: {fileID: 0}
+    - target: {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: Icon
+      value: 
+      objectReference: {fileID: 21300000, guid: a54d0a39c42056349b417da59427707e,
+        type: 3}
+    - target: {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: a54d0a39c42056349b417da59427707e,
+        type: 3}
+    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: ammo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: ammoType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: maxAmmo
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4451244720730353058, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -66,33 +93,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
-        type: 3}
-      propertyPath: Icon
-      value: 
-      objectReference: {fileID: 21300000, guid: a54d0a39c42056349b417da59427707e,
-        type: 3}
-    - target: {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
-        type: 3}
-      propertyPath: icon
-      value: 
-      objectReference: {fileID: 21300000, guid: a54d0a39c42056349b417da59427707e,
-        type: 3}
-    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
-        type: 3}
-      propertyPath: ammo
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
-        type: 3}
-      propertyPath: ammoType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
-        type: 3}
-      propertyPath: maxAmmo
-      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1735410551754458051, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}

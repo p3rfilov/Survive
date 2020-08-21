@@ -24,6 +24,13 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         health = GetComponent<Health>();
         itemHolder = GetComponent<ItemHolder>();
+        EventManager.OnPlayerNoiseMade += ChasePlayer;
+    }
+
+    void ChasePlayer (float noiseLevel)
+    {
+        spotDistance += noiseLevel;
+        isChasing = true;
     }
 
     void Update()

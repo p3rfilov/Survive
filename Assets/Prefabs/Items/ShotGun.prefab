@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2711596799779313501}
   - component: {fileID: 6675143044170965022}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: MuzzleFlashLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5302377294369496767}
   - component: {fileID: 3565771656928409901}
   - component: {fileID: 2958502133073072359}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ShotGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 6078080929774680239, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8134069317716473183, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
@@ -313,32 +313,32 @@ PrefabInstance:
     - target: {fileID: 5364285709419094228, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5277745120836622596, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6761962643110167783, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2419437567787816821, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3124802730018587663, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871943169640430736, guid: 172e80de3dcd0f342b9863a3a2d0fdc5,
         type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 172e80de3dcd0f342b9863a3a2d0fdc5, type: 3}

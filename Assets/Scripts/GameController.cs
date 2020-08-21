@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public SpawnZone[] spawnZones;
+    public SpawnZone[] enemySpawnZones;
+    public SpawnZone[] playerSpawnZones;
     public float spawnRate = 1f;
 
+    private GameObject player;
     private float nextSpawn;
 
+    public void SpawnPlayer ()
+    {
+        if (player == null)
+        {
+            player = playerSpawnZones[Random.Range(0, playerSpawnZones.Length)].Spawn();
+        }
+    }
 
-    void Update()
+    void Start ()
+    {
+        SpawnPlayer();
+    }
+
+    void Update ()
     {
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            for (int i = 0; i < spawnZones.Length; i++)   
+            for (int i = 0; i < enemySpawnZones.Length; i++)   
             {
-                spawnZones[i].Spawn();
+                enemySpawnZones[i].Spawn();
             }
         }
     }

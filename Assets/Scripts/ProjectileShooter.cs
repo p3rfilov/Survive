@@ -71,6 +71,7 @@ public class ProjectileShooter : Weapon
                     }
                 }
             }
+            EventManager.RaiseOnPlayerNoiseMade(100f);
         }
     }
 

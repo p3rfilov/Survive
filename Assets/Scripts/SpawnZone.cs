@@ -2,24 +2,26 @@
 
 public class SpawnZone : MonoBehaviour
 {
+    public Color zoneColor;
     public GameObject[] objects;
     [Range(0f, 100f)] public float spawnChance;
 
-    public void Spawn ()
+    public GameObject Spawn ()
     {
         int length = objects.Length;
         if (length > 0)
         {
             if (spawnChance >= Random.Range(0f, 100f))
             {
-                Instantiate(objects[Random.Range(0, length)], GetRandomPoint(), transform.rotation);
+                return Instantiate(objects[Random.Range(0, length)], GetRandomPoint(), transform.rotation);
             }
         }
+        return null;
     }
 
     private void OnDrawGizmosSelected ()
     {
-        Gizmos.color = new Color(1, 0, 0, 0.3f);
+        Gizmos.color = zoneColor;
         Gizmos.DrawCube(transform.position, transform.localScale);
     }
 
