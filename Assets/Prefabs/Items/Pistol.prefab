@@ -167,6 +167,7 @@ MonoBehaviour:
   projectileCount: 1
   muzzleFlash: {fileID: 4545809050624547081}
   flashDuration: 0.1
+  noiseLevel: 15
 --- !u!114 &7679768771473204117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a050b3501fabd294c829ea1e588312e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 0
-  clip: 3
+  ammo: 12
+  clip: 12
   reloadTime: 1.5
   ammoType: 0
   maxAmmo: 120

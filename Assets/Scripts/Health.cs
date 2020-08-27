@@ -20,7 +20,10 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        EventManager.RaiseOnPlayerHealthChanged();
+        if (transform.tag == "Player")
+        {
+            EventManager.RaiseOnPlayerHealthChanged();
+        }
         if (health <= 0)
         {
             if (isAlive)
@@ -33,7 +36,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         yield return new WaitForFixedUpdate();
 
-        if (body != null && coll != null)
+        if ((timeUntilFade > 0 && fadeTime > 0) || (body != null && coll != null))
         {
             Transform[] allParts;
             Vector3 velocity = body.velocity;
@@ -65,34 +68,38 @@ public class Health : MonoBehaviour, IDamageable
         }
         else
         {
-            PoolingManager.Remove(gameObject);
+            StartCoroutine(PoolingManager.Remove(gameObject));
         }
     }
 
     private IEnumerator FadeOut(Material material)
     {
-        Color color = material.color;
-        float startOpacity = color.a;
-        float t = 0;
+        if (material.HasProperty("_Color") && body.tag != "Player")  // keep player object in the scene
+        {
+            Color color = material.color;
+            float startOpacity = color.a;
+            float t = 0;
 
-        while (t < timeUntilFade)
-        {
-            t += Time.deltaTime;
-            yield return null;
-        }
+            while (t < timeUntilFade)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
 
-        t = 0;
-        while (t < fadeTime)
-        {
-            t += Time.deltaTime;
-            float blend = Mathf.Clamp01(t / fadeTime);
-            color.a = Mathf.Lerp(startOpacity, 0, blend);
-            material.color = color;
-            yield return null;
-        }
-        if (color.a <= 0)
-        {
-            PoolingManager.Remove(gameObject);
+            EventManager.RaiseOnSomethingDied(transform);
+            t = 0;
+            while (t < fadeTime)
+            {
+                t += Time.deltaTime;
+                float blend = Mathf.Clamp01(t / fadeTime);
+                color.a = Mathf.Lerp(startOpacity, 0, blend);
+                material.color = color;
+                yield return null;
+            }
+            if (color.a <= 0)
+            {
+                StartCoroutine(PoolingManager.Remove(gameObject));
+            }
         }
     }
 }

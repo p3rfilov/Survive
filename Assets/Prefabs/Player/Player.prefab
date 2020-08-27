@@ -253,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7783aeeb5df482c43bc2d8d146972050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTag: Player
   playerCamera: {fileID: 0}
   stencilObject: {fileID: 4713823676525666259}
   minScale: 0.1
@@ -320,8 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8227148951186551162, guid: 04553904f4084fb42acfc7c084c020db, type: 3}
+  - {fileID: 374465333547409378, guid: 562665145256c6a4d96bb695c43d76d2, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

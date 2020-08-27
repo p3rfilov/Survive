@@ -74,6 +74,7 @@ MonoBehaviour:
   projectileCount: 1
   muzzleFlash: {fileID: 4290227176623054895}
   flashDuration: 0.1
+  noiseLevel: 30
 --- !u!114 &374465333547409380
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,35 +9,47 @@ public class PlayerStencilController : MonoBehaviour
     public float scaleTime;
 
     Collider playerCollider;
+    Health health;
     float maxScale;
     bool scaling;
     string currentTag;
+    bool active = true;
 
     void Start ()
     {
         playerCollider = transform.GetComponent<Collider>();
+        health = transform.GetComponent<Health>();
         maxScale = stencilObject.transform.localScale.x;
+        StartCoroutine(ScaleDownAnimation(true));
     }
 
     void Update()
     {
-        if (playerCollider != null && playerCamera != null && stencilObject != null)
+        if (active)
         {
-            RaycastHit hit;
-
-            Vector3 vector = (stencilObject.transform.position - playerCamera.transform.position).normalized;
-            if (Physics.Raycast(playerCamera.transform.position, vector, out hit, Mathf.Infinity))
+            if (health?.health <= 0)
             {
-                if (!scaling && currentTag != hit.transform.tag)
+                StartCoroutine(ScaleDownAnimation(true));
+                active = false;
+            }
+            else if (playerCollider != null && playerCamera != null && stencilObject != null)
+            {
+                RaycastHit hit;
+
+                Vector3 vector = (stencilObject.transform.position - playerCamera.transform.position).normalized;
+                if (Physics.Raycast(playerCamera.transform.position, vector, out hit, Mathf.Infinity))
                 {
-                    currentTag = hit.transform.tag;
-                    if (hit.collider.tag == playerCollider.tag)
+                    if (!scaling && currentTag != hit.transform.tag)
                     {
-                        StartCoroutine(ScaleDownAnimation(true));
-                    }
-                    else
-                    {
-                        StartCoroutine(ScaleDownAnimation(false));
+                        currentTag = hit.transform.tag;
+                        if (hit.collider.tag == playerCollider.tag)
+                        {
+                            StartCoroutine(ScaleDownAnimation(true));
+                        }
+                        else
+                        {
+                            StartCoroutine(ScaleDownAnimation(false));
+                        }
                     }
                 }
             }

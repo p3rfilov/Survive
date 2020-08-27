@@ -13,6 +13,7 @@ public class ProjectileShooter : Weapon
     public int projectileCount;
     public Light muzzleFlash;
     public float flashDuration;
+    public float noiseLevel;
 
     private Ammo ammo;
     private RayShooter rayShooter;
@@ -71,7 +72,7 @@ public class ProjectileShooter : Weapon
                     }
                 }
             }
-            EventManager.RaiseOnPlayerNoiseMade(100f);
+            EventManager.RaiseOnPlayerNoiseMade(noiseLevel);
         }
     }
 

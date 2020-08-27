@@ -2,10 +2,8 @@
 
 public class Inventory : MonoBehaviour
 {
-    public const int size = 5;
-    public Item[] items = new Item[size];
-
-    public int Size { get { return size; } }
+    public Item[] items;
+    public int Size { get { return items.Length; } }
     public Item[] AllItems { get { return items; } }
 
     private void OnEnable()

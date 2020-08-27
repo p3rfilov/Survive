@@ -1,4 +1,5 @@
-﻿
+﻿using UnityEngine;
+
 public class EventManager
 {
     public delegate void ItemCollectedCallback ();
@@ -7,6 +8,8 @@ public class EventManager
     public delegate void PlayerCurrentItemChangedCallback ();
     public delegate void PlayerWeaponReloadingCallback (bool reloading);
     public delegate void PlayerNoiseMadeCallback (float noiseLevel);
+    public delegate void SomethingDiedCallback (Transform objectTransfrom);
+    public delegate void ObjectAboutToBeDestroyedCallback (GameObject obj);
 
     public static event ItemCollectedCallback OnItemCollected;
     public static event ItemDroppedCallback OnItemDropped;
@@ -14,6 +17,8 @@ public class EventManager
     public static event PlayerCurrentItemChangedCallback OnPlayerCurrentItemChanged;
     public static event PlayerWeaponReloadingCallback OnPlayerWeaponReloadingStateChanged;
     public static event PlayerNoiseMadeCallback OnPlayerNoiseMade;
+    public static event SomethingDiedCallback OnSomethingDied;
+    public static event ObjectAboutToBeDestroyedCallback OnObjectAboutToBeDestroyed;
 
     public static void RaiseOnItemCollected ()
     {
@@ -43,5 +48,15 @@ public class EventManager
     public static void RaiseOnPlayerNoiseMade (float noiseLevel)
     {
         OnPlayerNoiseMade?.Invoke(noiseLevel);
+    }
+
+    public static void RaiseOnSomethingDied (Transform objectTransfrom)
+    {
+        OnSomethingDied?.Invoke(objectTransfrom);
+    }
+
+    public static void RaiseOnObjectAboutToBeDestroyed (GameObject obj)
+    {
+        OnObjectAboutToBeDestroyed?.Invoke(obj);
     }
 }

@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
         col.isTrigger = true;
         body = GetComponent<Rigidbody>();
         if (lifetime > 0)
-            PoolingManager.Remove(gameObject, lifetime);
+            StartCoroutine(PoolingManager.Remove(gameObject, lifetime));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
             var _projectile = other.GetComponent<Projectile>();
             if (ignoreOtherProjectiles && _projectile != null)
                 return;
-            PoolingManager.Remove(gameObject);
+            StartCoroutine(PoolingManager.Remove(gameObject));
         }
     }
 }

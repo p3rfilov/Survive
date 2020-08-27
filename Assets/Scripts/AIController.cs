@@ -12,11 +12,12 @@ public class AIController : MonoBehaviour
     public float attackDistance = 1f;
     public string enemyTag = "Player";
 
-    private bool isChasing = false;
-    private Transform enemy;
-    private NavMeshAgent agent;
-    private Health health;
-    private ItemHolder itemHolder;
+    bool heardPlayer;
+    bool isChasing;
+    Transform enemy;
+    NavMeshAgent agent;
+    Health health;
+    ItemHolder itemHolder;
 
     void Start()
     {
@@ -29,8 +30,12 @@ public class AIController : MonoBehaviour
 
     void ChasePlayer (float noiseLevel)
     {
-        spotDistance += noiseLevel;
-        isChasing = true;
+        if (!heardPlayer)
+        {
+            spotDistance += noiseLevel;
+            isChasing = true;
+            heardPlayer = true;
+        }
     }
 
     void Update()
