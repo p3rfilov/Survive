@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
 public class GameController : MonoBehaviour
@@ -36,6 +34,7 @@ public class GameController : MonoBehaviour
     {
         if (Time.time > nextSpawn)
         {
+            GetRandomIventoryItemIndex();
             nextSpawn = Time.time + spawnRate;
             for (int i = 0; i < enemySpawnZones.Length; i++)   
             {
@@ -44,7 +43,6 @@ public class GameController : MonoBehaviour
                     if (enemySpawnZones[i].Spawn() != null)
                     {
                         enemyCount++;
-                        //print(enemyCount);
                     }
                 }
             }
@@ -58,14 +56,18 @@ public class GameController : MonoBehaviour
             enemyCount--;
             if (itemDropChance >= Random.Range(0f, 100f))
             {
-                float itemChanceIndex = (inventory.Size - 1) * Mathf.Clamp(itemDropChanceCurve.Evaluate(Random.value), 0f, 1f);
-                int itemIndex = Random.Range(0, (int)itemChanceIndex);
-                Item item = inventory.GetItem(itemIndex);
+                Item item = inventory.GetItem(GetRandomIventoryItemIndex());
                 if (item != null)
                 {
-                    Instantiate(inventory.GetItem(itemIndex), obj.position, obj.rotation).gameObject.SetActive(true);
+                    Instantiate(item, obj.position, obj.rotation).gameObject.SetActive(true);
                 }
             }
         }
+    }
+
+    private int GetRandomIventoryItemIndex ()
+    {
+        float itemIndex = Mathf.Clamp(inventory.Size * itemDropChanceCurve.Evaluate(Random.value), 0, inventory.Size);
+        return (int)itemIndex;
     }
 }

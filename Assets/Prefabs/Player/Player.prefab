@@ -320,10 +320,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 8227148951186551162, guid: 04553904f4084fb42acfc7c084c020db, type: 3}
+  - {fileID: 8227148951186551162, guid: 25195e59ac522244fa29636386e8678d, type: 3}
+  - {fileID: 8227148951186551162, guid: d8356af3bf769914d929502fb8f8492c, type: 3}
   - {fileID: 374465333547409378, guid: 562665145256c6a4d96bb695c43d76d2, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &3245762827640562301
 MonoBehaviour:
   m_ObjectHideFlags: 0

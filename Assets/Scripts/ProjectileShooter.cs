@@ -62,14 +62,17 @@ public class ProjectileShooter : Weapon
                     var body = hit.GetComponent<Rigidbody>();
                     var damageable = hit.GetComponent<IDamageable>();
 
-                    if (body != null)
-                        forceApplier.ApplyForce(body, dir);
-
                     if (damageable != null)
                     {
                         int damage = damageCalculator.CalculateRandomDamage();
                         damageable.TakeDamage(damage);
                     }
+
+                    if (body != null)
+                    {
+                        forceApplier.ApplyForce(body, dir);
+                    }
+
                 }
             }
             EventManager.RaiseOnPlayerNoiseMade(noiseLevel);

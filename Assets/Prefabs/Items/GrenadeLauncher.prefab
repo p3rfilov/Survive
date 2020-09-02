@@ -87,8 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a050b3501fabd294c829ea1e588312e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 0
-  clip: 1
+  ammo: 20
+  clip: 0
   reloadTime: 3
   ammoType: 3
   maxAmmo: 20

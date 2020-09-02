@@ -4753,10 +4753,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 5
-  force: 40000
+  force: 80000
   lift: 0.5
   explosionPrefab: {fileID: 6295110680903953189, guid: 5234773c5e880984588c009a792fb3af,
     type: 3}
+  duration: 2
 --- !u!114 &7338174841058015260
 MonoBehaviour:
   m_ObjectHideFlags: 0

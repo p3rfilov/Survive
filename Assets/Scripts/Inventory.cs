@@ -22,7 +22,6 @@ public class Inventory : MonoBehaviour
                     item.HasOwner = true;
                     item.gameObject.SetActive(false);
                     items[i] = item;
-                    EventManager.RaiseOnItemCollected();
                     return true;
                 }
             }
@@ -87,18 +86,18 @@ public class Inventory : MonoBehaviour
             if (inventoryAmmo.ammoType == newAmmo.ammoType)
             {
                 // swap items if picking up IUsable and we are only carrying ammo
-                // TODO: implementation feels wrong; separate inventory for ammo? initial idea was to have dropable/destructable ammo crates?
                 if (!(inventoryItem is IUsable) && item is IUsable)
                 {
                     newAmmo.AddAmmo(inventoryAmmo.AllAmmo);
                     RemoveItem(inventoryItem);
-                    ItemDropper.Drop(inventoryItem);
+                    PoolingManager.Remove(inventoryItem.gameObject, false);
                     EventManager.RaiseOnItemCollected();
                     return false;
                 }
                 else if (inventoryAmmo.AddAmmo(newAmmo.AllAmmo))
                 {
                     item.gameObject.SetActive(false);
+                    PoolingManager.Remove(item.gameObject, false);
                     EventManager.RaiseOnItemCollected();
                     return true;
                 }

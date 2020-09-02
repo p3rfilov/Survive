@@ -8,6 +8,7 @@ public class Exploder : MonoBehaviour
     public float force;
     public float lift;
     public GameObject explosionPrefab;
+    public float duration;
 
     private DamageCalculator damageCalculator;
 
@@ -17,11 +18,15 @@ public class Exploder : MonoBehaviour
         EventManager.OnObjectAboutToBeDestroyed += Explode;
     }
 
+    private void OnDestroy ()
+    {
+        EventManager.OnObjectAboutToBeDestroyed -= Explode;
+    }
+
     private void Explode (GameObject gameObj)
     {
-        if (gameObj == transform.gameObject)
+        if (gameObj == transform?.gameObject)
         {
-            EventManager.OnObjectAboutToBeDestroyed -= Explode;
             Vector3 explosionPos = transform.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider hit in colliders)
@@ -46,11 +51,11 @@ public class Exploder : MonoBehaviour
 
             if (explosionPrefab != null)
             {
-                var explosionObj = Instantiate(explosionPrefab, transform.position, transform.rotation);
+                var explosionObj = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
                 var explosion = explosionPrefab.GetComponent<ParticleSystem>();
                 if (explosion != null)
                     explosion.Play();
-                Destroy(explosionObj, explosion.main.duration);
+                Destroy(explosionObj, duration);
             }
         }
     }

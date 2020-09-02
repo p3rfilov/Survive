@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class Health : MonoBehaviour, IDamageable
@@ -9,12 +10,14 @@ public class Health : MonoBehaviour, IDamageable
 
     private Rigidbody body;
     private CapsuleCollider coll;
+    private NavMeshAgent agent;
     private bool isAlive = true;
 
     private void Start()
     {
         body = GetComponent<Rigidbody>();
         coll = GetComponent<CapsuleCollider>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     public void TakeDamage(int damage)
@@ -26,6 +29,11 @@ public class Health : MonoBehaviour, IDamageable
         }
         if (health <= 0)
         {
+            if (agent != null && body != null)
+            {
+                agent.enabled = false;
+                body.isKinematic = false;
+            }
             if (isAlive)
                 StartCoroutine(Kill());
             isAlive = false;
@@ -36,6 +44,7 @@ public class Health : MonoBehaviour, IDamageable
     {
         yield return new WaitForFixedUpdate();
 
+        StartCoroutine(RaiseOnSomethingDiedDelayed());
         if ((timeUntilFade > 0 && fadeTime > 0) || (body != null && coll != null))
         {
             Transform[] allParts;
@@ -43,8 +52,6 @@ public class Health : MonoBehaviour, IDamageable
             Vector3 angVelocity = body.angularVelocity;
             float mass = body.mass;
 
-            //body.isKinematic = true;
-            //coll.enabled = false;
             Destroy(body);
             Destroy(coll);
 
@@ -68,7 +75,7 @@ public class Health : MonoBehaviour, IDamageable
         }
         else
         {
-            StartCoroutine(PoolingManager.Remove(gameObject));
+            PoolingManager.Remove(gameObject);
         }
     }
 
@@ -86,7 +93,6 @@ public class Health : MonoBehaviour, IDamageable
                 yield return null;
             }
 
-            EventManager.RaiseOnSomethingDied(transform);
             t = 0;
             while (t < fadeTime)
             {
@@ -98,8 +104,14 @@ public class Health : MonoBehaviour, IDamageable
             }
             if (color.a <= 0)
             {
-                StartCoroutine(PoolingManager.Remove(gameObject));
+                PoolingManager.Remove(gameObject);
             }
         }
+    }
+
+    private IEnumerator RaiseOnSomethingDiedDelayed ()
+    {
+        yield return new WaitForSeconds(timeUntilFade);
+        EventManager.RaiseOnSomethingDied(transform);
     }
 }

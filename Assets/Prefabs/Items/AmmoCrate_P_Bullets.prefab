@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a050b3501fabd294c829ea1e588312e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 24
+  ammo: 12
   clip: 0
   reloadTime: 0
   ammoType: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   lift: 0.5
   explosionPrefab: {fileID: 6295110680903953189, guid: 5234773c5e880984588c009a792fb3af,
     type: 3}
+  duration: 2
 --- !u!114 &3715228402423247702
 MonoBehaviour:
   m_ObjectHideFlags: 0
