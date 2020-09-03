@@ -12,7 +12,7 @@ public class PlayerStencilController : MonoBehaviour
     Health health;
     float maxScale;
     bool scaling;
-    string currentTag;
+    bool scaledDown;
     bool active = true;
 
     void Start ()
@@ -39,14 +39,13 @@ public class PlayerStencilController : MonoBehaviour
                 Vector3 vector = (stencilObject.transform.position - playerCamera.transform.position).normalized;
                 if (Physics.Raycast(playerCamera.transform.position, vector, out hit, Mathf.Infinity))
                 {
-                    if (!scaling && currentTag != hit.transform.tag)
+                    if (!scaling)
                     {
-                        currentTag = hit.transform.tag;
-                        if (hit.collider.tag == playerCollider.tag)
+                        if (hit.collider.tag == playerCollider.tag && !scaledDown)
                         {
                             StartCoroutine(ScaleDownAnimation(true));
                         }
-                        else
+                        else if (hit.collider.tag != playerCollider.tag && scaledDown)
                         {
                             StartCoroutine(ScaleDownAnimation(false));
                         }
@@ -67,10 +66,12 @@ public class PlayerStencilController : MonoBehaviour
         if (state)
         {
             toScale = Vector3.one * minScale;
+            scaledDown = true;
         }
         else
         {
             toScale = Vector3.one * maxScale;
+            scaledDown = false;
         }
 
         while (i < 1)

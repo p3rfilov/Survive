@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7498935192928790938}
   m_Layer: 10
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   health: 10
   timeUntilFade: 3
   fadeTime: 3
+  allowDrops: 1
 --- !u!114 &274275502101876129
 MonoBehaviour:
   m_ObjectHideFlags: 0

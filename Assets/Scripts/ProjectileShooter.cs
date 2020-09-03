@@ -59,27 +59,21 @@ public class ProjectileShooter : Weapon
                 Shoot(fireFrom, dir);
                 if (dealDamage && hit != null)
                 {
-                    var body = hit.GetComponent<Rigidbody>();
                     var damageable = hit.GetComponent<IDamageable>();
-
                     if (damageable != null)
                     {
                         int damage = damageCalculator.CalculateRandomDamage();
                         damageable.TakeDamage(damage);
                     }
 
-                    if (body != null)
-                    {
-                        forceApplier.ApplyForce(body, dir);
-                    }
-
+                    forceApplier.ApplyForce(hit, dir);
                 }
             }
             EventManager.RaiseOnPlayerNoiseMade(noiseLevel);
         }
     }
 
-    public void Shoot(Transform origin, Vector3 direction)
+    void Shoot(Transform origin, Vector3 direction)
     {
         if (projectile != null)
         {
@@ -91,7 +85,7 @@ public class ProjectileShooter : Weapon
         }
     }
 
-    public void MuzzleFlash ()
+    void MuzzleFlash ()
     {
         if (muzzleFlash != null)
         {
@@ -99,7 +93,7 @@ public class ProjectileShooter : Weapon
         }
     }
 
-    private IEnumerator MuzzleFlashCR ()
+    IEnumerator MuzzleFlashCR ()
     {
         muzzleFlash.enabled = true;
         yield return new WaitForSeconds(flashDuration);

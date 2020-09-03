@@ -7,6 +7,7 @@ public class Health : MonoBehaviour, IDamageable
     public int health;
     public float timeUntilFade = 3f;
     public float fadeTime = 3f;
+    public bool allowDrops;
 
     private Rigidbody body;
     private CapsuleCollider coll;
@@ -35,16 +36,18 @@ public class Health : MonoBehaviour, IDamageable
                 body.isKinematic = false;
             }
             if (isAlive)
+            {
                 StartCoroutine(Kill());
+                StartCoroutine(RaiseOnSomethingDiedDelayed());
+            }
             isAlive = false;
         }
     }
 
-    public IEnumerator Kill()
+    public IEnumerator Kill ()
     {
         yield return new WaitForFixedUpdate();
 
-        StartCoroutine(RaiseOnSomethingDiedDelayed());
         if ((timeUntilFade > 0 && fadeTime > 0) || (body != null && coll != null))
         {
             Transform[] allParts;
@@ -64,6 +67,7 @@ public class Health : MonoBehaviour, IDamageable
                 {
                     item.gameObject.AddComponent<BoxCollider>();
                     var bodyPart = item.gameObject.AddComponent<Rigidbody>();
+                    bodyPart.isKinematic = false;
                     bodyPart.mass = mass;
                     bodyPart.velocity = velocity + random;
                     bodyPart.angularVelocity = angVelocity + random;
@@ -81,7 +85,7 @@ public class Health : MonoBehaviour, IDamageable
 
     private IEnumerator FadeOut(Material material)
     {
-        if (material.HasProperty("_Color") && body.tag != "Player")  // keep player object in the scene
+        if (material.HasProperty("_Color") && transform.tag != "Player")  // keep player object in the scene
         {
             Color color = material.color;
             float startOpacity = color.a;

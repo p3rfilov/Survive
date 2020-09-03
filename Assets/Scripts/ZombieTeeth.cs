@@ -37,15 +37,14 @@ public class ZombieTeeth : Weapon
             hit = rayShooter.ShootRay(fireFrom.position, dir);
             if (hit != null)
             {
-                var body = hit.GetComponent<Rigidbody>();
                 var damageable = hit.GetComponent<IDamageable>();
-
-                forceApplier.ApplyForce(body, dir);
                 if (damageable != null)
                 {
                     int damage = damageCalculator.CalculateRandomDamage();
                     damageable.TakeDamage(damage);
                 }
+
+                forceApplier.ApplyForce(hit, dir);
             }
         }
     }

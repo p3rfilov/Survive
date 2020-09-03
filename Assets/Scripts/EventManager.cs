@@ -10,6 +10,7 @@ public class EventManager
     public delegate void PlayerNoiseMadeCallback (float noiseLevel);
     public delegate void SomethingDiedCallback (Transform objectTransfrom);
     public delegate void ObjectAboutToBeDestroyedCallback (GameObject obj);
+    public delegate void GameStatsChangedCallback ();
 
     public static event ItemCollectedCallback OnItemCollected;
     public static event ItemDroppedCallback OnItemDropped;
@@ -19,6 +20,7 @@ public class EventManager
     public static event PlayerNoiseMadeCallback OnPlayerNoiseMade;
     public static event SomethingDiedCallback OnSomethingDied;
     public static event ObjectAboutToBeDestroyedCallback OnObjectAboutToBeDestroyed;
+    public static event GameStatsChangedCallback OnGameStatsChanged;
 
     public static void RaiseOnItemCollected ()
     {
@@ -58,5 +60,10 @@ public class EventManager
     public static void RaiseOnObjectAboutToBeDestroyed (GameObject obj)
     {
         OnObjectAboutToBeDestroyed?.Invoke(obj);
+    }
+
+    public static void RaiseOnGameStatsChanged ()
+    {
+        OnGameStatsChanged?.Invoke();
     }
 }

@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask ground;
     public LayerMask aimable;
 
+    public Texture2D cursorIdle;
+    public Texture2D cursorKillable;
+    public Vector2 cursorHotSpot;
+    public CursorMode cursorMode = CursorMode.ForceSoftware;
+
     private float groundDistance = 0.2f;
     private bool isGrounded = true;
     private Vector3 inputs = Vector3.zero;
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
                 Ray ray;
                 RaycastHit hit;
 
+                Cursor.SetCursor(cursorIdle, cursorHotSpot, cursorMode);
                 ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, aimable))
                 {
@@ -57,6 +63,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else if (hit.transform.GetComponent<Health>() != null)  // something killable, except self
                     {
+                        Cursor.SetCursor(cursorKillable, cursorHotSpot, cursorMode);
                         targetPosition = new Vector3(hit.transform.position.x, transform.position.y, hit.transform.position.z);
                         transform.LookAt(targetPosition);
                         var _collider = hit.transform.GetComponent<Collider>();

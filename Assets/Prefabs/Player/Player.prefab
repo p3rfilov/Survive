@@ -272,6 +272,7 @@ MonoBehaviour:
   health: 100
   timeUntilFade: 3
   fadeTime: 3
+  allowDrops: 0
 --- !u!114 &6720295014044054220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +294,10 @@ MonoBehaviour:
   aimable:
     serializedVersion: 2
     m_Bits: 1024
+  cursorIdle: {fileID: 2800000, guid: 56f05acbcecfef24184c0ec42fb70fc5, type: 3}
+  cursorKillable: {fileID: 2800000, guid: f0f0774ae10a6b947bc763444c1ac715, type: 3}
+  cursorHotSpot: {x: 4, y: 4}
+  cursorMode: 1
 --- !u!114 &6720295014044054221
 MonoBehaviour:
   m_ObjectHideFlags: 0
