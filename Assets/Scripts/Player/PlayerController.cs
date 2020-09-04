@@ -85,12 +85,12 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
             }
 
-            if (Input.GetButtonDown("Next Item"))
+            if (Input.GetButtonDown("Next Item") || Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
                 itemHolder.CicleItems(1);
             }
 
-            if (Input.GetButtonDown("Last Item"))
+            if (Input.GetButtonDown("Last Item") || Input.GetAxis("Mouse ScrollWheel") < 0f)
             {
                 itemHolder.CicleItems(-1);
             }
@@ -106,6 +106,15 @@ public class PlayerController : MonoBehaviour
                 if (usable != null)
                 {
                     usable.Use();
+                }
+            }
+
+            if (Input.GetButton("Fire2"))
+            {
+                var ammo = itemHolder.Object?.GetComponent<Ammo>();
+                if (ammo != null && ammo.AllAmmo > 0 && !ammo.Reloading)
+                {
+                    StartCoroutine(ammo.Reload());
                 }
             }
         }

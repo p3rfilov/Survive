@@ -11,9 +11,8 @@ public class Ammo : MonoBehaviour
     public int magazineCapacity;
 
     public int AllAmmo { get { return ammo + clip; } }
+    public bool Reloading { get; private set; }
     public enum AmmoType {P_Bullets, MG_Bullets, SG_Shells, Grenades, Mines, Propane};
-
-    private bool reloading = false;
 
     public bool SpendAmmo()
     {
@@ -21,13 +20,13 @@ public class Ammo : MonoBehaviour
         {
             clip--;
             EventManager.RaiseOnPlayerCurrentItemChanged();
-            if (clip == 0 && ammo > 0 && !reloading)
+            if (clip == 0 && ammo > 0 && !Reloading)
             {
                 StartCoroutine(Reload());
             }
             return true;
         }
-        else if (ammo > 0 && !reloading)
+        else if (ammo > 0 && !Reloading)
         {
             StartCoroutine(Reload());
         }
@@ -47,14 +46,14 @@ public class Ammo : MonoBehaviour
     public IEnumerator Reload()
     {
         int ammoToAdd = Mathf.Min(ammo, magazineCapacity);
-        reloading = true;
+        Reloading = true;
 
         EventManager.RaiseOnPlayerWeaponReloadingStateChanged(true);
         yield return new WaitForSeconds(reloadTime);
         ammo -= ammoToAdd;
-        clip += ammoToAdd;
+        clip = ammoToAdd;
 
-        reloading = false;
+        Reloading = false;
         EventManager.RaiseOnPlayerWeaponReloadingStateChanged(false);
         EventManager.RaiseOnPlayerCurrentItemChanged();
     }
@@ -62,6 +61,6 @@ public class Ammo : MonoBehaviour
     private void OnDisable()
     {
         // in case GameObject is disabled (switching weapons) during reloading
-        reloading = false;
+        Reloading = false;
     }
 }
