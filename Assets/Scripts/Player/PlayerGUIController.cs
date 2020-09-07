@@ -94,6 +94,9 @@ public class PlayerGUIController : MonoBehaviour
 
     private void DisplayReloadingMessage (bool reloading)
     {
-        relodingMessage.enabled = reloading;
+        if (relodingMessage != null)
+        {
+            relodingMessage.enabled = reloading;
+        }
     }
 }

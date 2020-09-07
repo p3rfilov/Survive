@@ -538,9 +538,9 @@ MonoBehaviour:
   playerSpawnZones:
   - {fileID: 0}
   - {fileID: 0}
-  spawnRate: 1
-  maxEnemies: 3
-  difficultyIncreaseRate: 20
+  spawnInterval: 1
+  startEnemyCount: 0
+  difficultyIncreaseInterval: 0
   addEnemyPerInterval: 2
   totalEnemyCap: 50
   itemDropChance: 75
@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced119e649744fa408419a2aeb648957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instantiateItems: 0
   items:
   - {fileID: 3139719655400986977, guid: b40e41cf5a8b0c34dabbe7342f6db10a, type: 3}
   - {fileID: 9103918887727197815, guid: cda084a8a18b9a34187704fe8fd8b7f6, type: 3}

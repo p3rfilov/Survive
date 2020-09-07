@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
-public class GameController : MonoBehaviour
+public class GameRules : MonoBehaviour
 {
     public SpawnZone[] enemySpawnZones;
     public SpawnZone[] playerSpawnZones;
-    public float spawnRate = 1f;
-    public int maxEnemies;
-    public float difficultyIncreaseRate;
+    public float spawnInterval = 1f;
+    public int startEnemyCount;
+    public float difficultyIncreaseInterval;
     public int addEnemyPerInterval;
     [Range(0, 200)] public int totalEnemyCap;
     [Range(0f, 100f)] public float itemDropChance;
@@ -29,29 +29,34 @@ public class GameController : MonoBehaviour
         }
     }
 
+    void Awake ()
+    {
+        EventManager.OnSomethingDied += DropItemAndDecrementEnemyCount;
+        EventManager.OnGameRulesChanged += ChangeGameRules;
+    }
+
     void Start ()
     {
         inventory = GetComponent<Inventory>();
-        EventManager.OnSomethingDied += DropItemAndDecrementEnemyCount;
-        nextDifficultyIncrease = difficultyIncreaseRate;
+        nextDifficultyIncrease = difficultyIncreaseInterval;
         SpawnPlayer();
     }
 
     void Update ()
     {
-        if (Time.time > difficultyIncreaseRate)
+        if (Time.time > difficultyIncreaseInterval)
         {
-            difficultyIncreaseRate = Time.time + difficultyIncreaseRate;
-            maxEnemies = Mathf.Min(maxEnemies + addEnemyPerInterval, totalEnemyCap);
+            difficultyIncreaseInterval = Time.time + difficultyIncreaseInterval;
+            startEnemyCount = Mathf.Min(startEnemyCount + addEnemyPerInterval, totalEnemyCap);
             EventManager.RaiseOnGameStatsChanged();
         }
         if (Time.time > nextSpawn)
         {
             GetRandomIventoryItemIndex();
-            nextSpawn = Time.time + spawnRate;
+            nextSpawn = Time.time + spawnInterval;
             for (int i = 0; i < enemySpawnZones.Length; i++)   
             {
-                if (EnemyCount < maxEnemies)
+                if (EnemyCount < startEnemyCount)
                 {
                     if (enemySpawnZones[i].Spawn() != null)
                     {
@@ -85,9 +90,18 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private int GetRandomIventoryItemIndex ()
+    int GetRandomIventoryItemIndex ()
     {
         float itemIndex = Mathf.Clamp(inventory.Size * itemDropChanceCurve.Evaluate(Random.value), 0, inventory.Size);
         return (int)itemIndex;
+    }
+
+    void ChangeGameRules(int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance)
+    {
+        startEnemyCount = startCount;
+        this.spawnInterval = spawnInterval;
+        difficultyIncreaseInterval = increaseInterval;
+        addEnemyPerInterval = increaseCount;
+        this.itemDropChance = itemDropChance;
     }
 }

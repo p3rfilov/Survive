@@ -4732,6 +4732,21 @@ PrefabInstance:
       propertyPath: playerSpawnZones.Array.data[1]
       value: 
       objectReference: {fileID: 106784618}
+    - target: {fileID: 4935185858535709270, guid: bf1070cd8673b4241a280b566ac9fff3,
+        type: 3}
+      propertyPath: startEnemyCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935185858535709270, guid: bf1070cd8673b4241a280b566ac9fff3,
+        type: 3}
+      propertyPath: difficultyIncreaseInterval
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935185858535709270, guid: bf1070cd8673b4241a280b566ac9fff3,
+        type: 3}
+      propertyPath: totalEnemyCap
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4935185856776642433, guid: bf1070cd8673b4241a280b566ac9fff3,
         type: 3}
       propertyPath: m_IsActive

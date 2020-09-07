@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 245688767}
   - component: {fileID: 245688768}
   m_Layer: 5
-  m_Name: SpawnRateSlider
+  m_Name: SpawnIntervalSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -902,7 +902,7 @@ GameObject:
   - component: {fileID: 349564991}
   - component: {fileID: 349564990}
   m_Layer: 5
-  m_Name: IncreseRateText
+  m_Name: IncreseIntervalText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -977,22 +977,13 @@ GameObject:
   m_Component:
   - component: {fileID: 352495500}
   - component: {fileID: 352495499}
-  - component: {fileID: 352495498}
   m_Layer: 0
-  m_Name: GUICamera
+  m_Name: MenuCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &352495498
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352495497}
-  m_Enabled: 1
 --- !u!20 &352495499
 Camera:
   m_ObjectHideFlags: 0
@@ -1939,7 +1930,7 @@ GameObject:
   - component: {fileID: 785238043}
   - component: {fileID: 785238042}
   m_Layer: 5
-  m_Name: SpawnRateText
+  m_Name: SpawnIntervalText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3201,6 +3192,12 @@ MonoBehaviour:
   mainMenu: {fileID: 1737265958}
   controlsMenu: {fileID: 1979594720}
   gameSettings: {fileID: 1087352704}
+  menuCamera: {fileID: 352495499}
+  startCount: {fileID: 1529424959}
+  spawnInterval: {fileID: 245688767}
+  increaseInterval: {fileID: 2048944163}
+  increaseCount: {fileID: 1712767456}
+  itemDropChance: {fileID: 1359816365}
 --- !u!1 &1322174328
 GameObject:
   m_ObjectHideFlags: 0
@@ -5449,7 +5446,7 @@ GameObject:
   - component: {fileID: 2048944163}
   - component: {fileID: 2048944162}
   m_Layer: 5
-  m_Name: IncreseRateSlider
+  m_Name: IncreseIntervalSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5630,7 +5627,7 @@ GameObject:
   - component: {fileID: 2100192513}
   - component: {fileID: 2100192512}
   m_Layer: 5
-  m_Name: IncreseRatePanel
+  m_Name: IncreseIntervalPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

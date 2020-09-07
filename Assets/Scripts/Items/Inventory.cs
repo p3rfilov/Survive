@@ -2,13 +2,17 @@
 
 public class Inventory : MonoBehaviour
 {
+    public bool instantiateItems = true;
     public Item[] items;
     public int Size { get { return items.Length; } }
     public Item[] AllItems { get { return items; } }
 
     private void OnEnable()
     {
-        InstantiateItems();
+        if (instantiateItems)
+        {
+            InstantiateItems();
+        }
     }
 
     public bool AddItem(Item item)

@@ -6,11 +6,11 @@ public class ScoreGUIController : MonoBehaviour
     public Text score;
     public Text zombies;
 
-    GameController gameController;
+    GameRules gameController;
 
     void Start()
     {
-        gameController = transform.GetComponent<GameController>();
+        gameController = transform.GetComponent<GameRules>();
         EventManager.OnGameStatsChanged += DisplayStats;
     }
 
