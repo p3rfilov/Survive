@@ -16,20 +16,17 @@ public class MenuController : MonoBehaviour
     public Slider increaseInterval;
     public Slider increaseCount;
     public Slider itemDropChance;
+    public Toggle bulletTime;
 
     bool gameRunning;
-    float timeScale;
-
+    float defaultTimeScale;
     int loadedLevelBuildIndex;
     List<Canvas> allMenus = new List<Canvas>();
 
     public void BeginGame ()
     {
-        HideAllMenus();
         StartCoroutine(LoadLevel(1));
-        Time.timeScale = timeScale;
-        gameRunning = true;
-        EventManager.RaiseOnGamePaused(gameRunning);
+        PauseGame(false);
     }
 
     public void DisplayMainMenu ()
@@ -47,9 +44,26 @@ public class MenuController : MonoBehaviour
         DisplayCanvas(gameSettings);
     }
 
+    public void PauseGame (bool state)
+    {
+        if (state)
+        {
+            Time.timeScale = 0;
+            DisplayMainMenu();
+        }
+        else
+        {
+            Time.timeScale = defaultTimeScale;
+            HideAllMenus();
+        }
+        
+        gameRunning = !state;
+        EventManager.RaiseOnGamePaused(gameRunning);
+    }
+
     void Awake ()
     {
-        timeScale = Time.timeScale;
+        defaultTimeScale = Time.timeScale;
     }
 
     void Start ()
@@ -62,26 +76,13 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (gameRunning)
-            {
-                Time.timeScale = 0;
-                DisplayMainMenu();
-                gameRunning = false;
-                EventManager.RaiseOnGamePaused(gameRunning);
-            }
-            else
-            {
-                HideAllMenus();
-                Time.timeScale = timeScale;
-                gameRunning = true;
-                EventManager.RaiseOnGamePaused(gameRunning);
-            }
+            PauseGame(gameRunning);
         }
     }
 
     void SetGameParameters ()
     {
-        EventManager.RaiseOnGameRulesChanged((int)startCount.value, spawnInterval.value, increaseInterval.value, (int)increaseCount.value, itemDropChance.value);
+        EventManager.RaiseOnGameRulesChanged((int)startCount.value, spawnInterval.value, increaseInterval.value, (int)increaseCount.value, itemDropChance.value, bulletTime.isOn);
         gameRunning = true;
     }
 

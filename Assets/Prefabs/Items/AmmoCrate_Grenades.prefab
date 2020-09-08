@@ -26,11 +26,6 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}
-      propertyPath: ammo
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
-        type: 3}
       propertyPath: ammoType
       value: 3
       objectReference: {fileID: 0}
@@ -38,6 +33,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxAmmo
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893248059410832883, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
+        type: 3}
+      propertyPath: ammo
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4451244720730353058, guid: b40e41cf5a8b0c34dabbe7342f6db10a,
         type: 3}

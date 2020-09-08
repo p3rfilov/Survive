@@ -9,17 +9,10 @@ public class Health : MonoBehaviour, IDamageable
     public float fadeTime = 3f;
     public bool allowDrops;
 
-    private Rigidbody body;
-    private CapsuleCollider coll;
-    private NavMeshAgent agent;
-    private bool isAlive = true;
-
-    private void Start()
-    {
-        body = GetComponent<Rigidbody>();
-        coll = GetComponent<CapsuleCollider>();
-        agent = GetComponent<NavMeshAgent>();
-    }
+    Rigidbody body;
+    CapsuleCollider coll;
+    NavMeshAgent agent;
+    bool isAlive = true;
 
     public void TakeDamage(int damage)
     {
@@ -44,8 +37,16 @@ public class Health : MonoBehaviour, IDamageable
         }
     }
 
-    public IEnumerator Kill ()
+    void Start()
     {
+        body = GetComponent<Rigidbody>();
+        coll = GetComponent<CapsuleCollider>();
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    IEnumerator Kill ()
+    {
+        // TODO: Move to FixedUpdate as physics are not behaving correctly at low frame rates
         yield return new WaitForFixedUpdate();
 
         if ((timeUntilFade > 0 && fadeTime > 0) || (body != null && coll != null))
@@ -83,7 +84,7 @@ public class Health : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator FadeOut(Material material)
+    IEnumerator FadeOut(Material material)
     {
         if (material.HasProperty("_Color") && transform.tag != "Player")  // keep player object in the scene
         {
@@ -113,7 +114,7 @@ public class Health : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator RaiseOnSomethingDiedDelayed ()
+    IEnumerator RaiseOnSomethingDiedDelayed ()
     {
         yield return new WaitForSeconds(timeUntilFade);
         EventManager.RaiseOnSomethingDied(transform);

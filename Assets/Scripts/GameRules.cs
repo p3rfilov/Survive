@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Inventory))]
 public class GameRules : MonoBehaviour
@@ -13,8 +14,16 @@ public class GameRules : MonoBehaviour
     [Range(0f, 100f)] public float itemDropChance;
     public AnimationCurve itemDropChanceCurve;
 
+    public bool bulletTime = true;
+    public bool onExplosion = true;
+    [Range(0f, 1f)] public float slowDownValue = 0.35f;
+    [Range(0f, 3f)] public float bulletTimedDration = 0.5f;
+
     public int EnemyCount { get; private set; }
     public int Score { get; private set; }
+
+    float defaultTimeScale;
+    float defaultFixetTimeScale;
 
     Inventory inventory;
     GameObject player;
@@ -29,10 +38,28 @@ public class GameRules : MonoBehaviour
         }
     }
 
+    public void RunBulletTime (GameObject obj)
+    {
+        if (bulletTime)
+        {
+            if (onExplosion)
+            {
+                Exploder exploder = obj.GetComponent<Exploder>();
+                if (exploder != null)
+                {
+                    StartCoroutine(BulletTime());
+                }
+            }
+        }
+    }
+
     void Awake ()
     {
         EventManager.OnSomethingDied += DropItemAndDecrementEnemyCount;
         EventManager.OnGameRulesChanged += ChangeGameRules;
+        EventManager.OnObjectAboutToBeDestroyed += RunBulletTime;
+        defaultTimeScale = Time.timeScale;
+        defaultFixetTimeScale = Time.fixedDeltaTime;
     }
 
     void Start ()
@@ -96,12 +123,22 @@ public class GameRules : MonoBehaviour
         return (int)itemIndex;
     }
 
-    void ChangeGameRules(int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance)
+    void ChangeGameRules(int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance, bool bulletTime)
     {
         startEnemyCount = startCount;
         this.spawnInterval = spawnInterval;
         difficultyIncreaseInterval = increaseInterval;
         addEnemyPerInterval = increaseCount;
         this.itemDropChance = itemDropChance;
+        this.bulletTime = bulletTime;
+    }
+
+    IEnumerator BulletTime ()
+    {
+        Time.timeScale = slowDownValue;
+        Time.fixedDeltaTime = defaultFixetTimeScale * slowDownValue;
+        yield return new WaitForSeconds(bulletTimedDration);
+        Time.timeScale = defaultTimeScale;
+        Time.fixedDeltaTime = defaultFixetTimeScale;
     }
 }

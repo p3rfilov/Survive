@@ -4,7 +4,7 @@ public class ItemFloater : MonoBehaviour
 {
     static float rotationSpeed = 60f;
     static float wobbleSpeed = 2f;
-    static float height = 0.5f;
+    static float height = 0.2f;
     static float amplitude = 0.1f;
 
     private Item item;

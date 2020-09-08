@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         itemHolder = GetComponent<ItemHolder>();
     }
 
-    void Update()
+    void FixedUpdate ()
     {
         if (body != null)
         {
@@ -56,7 +56,13 @@ public class PlayerController : MonoBehaviour
                 body.MovePosition(body.position + viewRotation * inputs * moveSpeed * _airControl * Time.fixedDeltaTime);
                 body.angularVelocity = Vector3.zero;
             }
+        }
+    }
 
+    void Update()
+    {
+        if (body != null)
+        {
             if (mouseLook)
             {
                 Ray ray;

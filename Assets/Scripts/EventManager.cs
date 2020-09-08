@@ -11,7 +11,7 @@ public class EventManager
     public delegate void SomethingDiedCallback (Transform objectTransfrom);
     public delegate void ObjectAboutToBeDestroyedCallback (GameObject obj);
     public delegate void GameStatsChangedCallback ();
-    public delegate void GameRulesChangedCallback (int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance);
+    public delegate void GameRulesChangedCallback (int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance, bool bulletTime);
     public delegate void GamePausedCallback (bool state);
 
     public static event ItemCollectedCallback OnItemCollected;
@@ -71,9 +71,9 @@ public class EventManager
         OnGameStatsChanged?.Invoke();
     }
 
-    public static void RaiseOnGameRulesChanged (int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance)
+    public static void RaiseOnGameRulesChanged (int startCount, float spawnInterval, float increaseInterval, int increaseCount, float itemDropChance, bool bulletTime)
     {
-        OnGameRulesChanged?.Invoke(startCount, spawnInterval, increaseInterval, increaseCount, itemDropChance);
+        OnGameRulesChanged?.Invoke(startCount, spawnInterval, increaseInterval, increaseCount, itemDropChance, bulletTime);
     }
 
     public static void RaiseOnGamePaused (bool state)

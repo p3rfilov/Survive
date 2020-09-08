@@ -94,9 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 802932a0964aed64c98fc1eb3bbd44cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 1
   timeUntilFade: 0
   fadeTime: 0
+  allowDrops: 0
 --- !u!114 &174160775071739190
 MonoBehaviour:
   m_ObjectHideFlags: 0
