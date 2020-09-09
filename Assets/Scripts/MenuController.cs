@@ -9,6 +9,8 @@ public class MenuController : MonoBehaviour
     public Canvas mainMenu;
     public Canvas controlsMenu;
     public Canvas gameSettings;
+    public Canvas gameOverScreen;
+    public Canvas loadingScreen;
     public Camera menuCamera;
 
     public Slider startCount;
@@ -19,6 +21,7 @@ public class MenuController : MonoBehaviour
     public Toggle bulletTime;
 
     bool gameRunning;
+    float retryMenuDelay = 2f;
     float defaultTimeScale;
     int loadedLevelBuildIndex;
     List<Canvas> allMenus = new List<Canvas>();
@@ -27,6 +30,7 @@ public class MenuController : MonoBehaviour
     {
         StartCoroutine(LoadLevel(1));
         PauseGame(false);
+        DisplayCanvas(loadingScreen);
     }
 
     public void DisplayMainMenu ()
@@ -42,6 +46,11 @@ public class MenuController : MonoBehaviour
     public void DisplaySettingsMenu ()
     {
         DisplayCanvas(gameSettings);
+    }
+
+    public void DisplayLoadingScreen ()
+    {
+        DisplayCanvas(loadingScreen);
     }
 
     public void PauseGame (bool state)
@@ -64,6 +73,7 @@ public class MenuController : MonoBehaviour
     void Awake ()
     {
         defaultTimeScale = Time.timeScale;
+        EventManager.OnSomethingDied += DisplayGemeOverScreen;
     }
 
     void Start ()
@@ -80,6 +90,14 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    void DisplayGemeOverScreen (Transform obj)
+    {
+        if (obj != null && obj.tag == "Player")
+        {
+            StartCoroutine(DisplayGameOver());
+        }
+    }
+
     void SetGameParameters ()
     {
         EventManager.RaiseOnGameRulesChanged((int)startCount.value, spawnInterval.value, increaseInterval.value, (int)increaseCount.value, itemDropChance.value, bulletTime.isOn);
@@ -92,6 +110,8 @@ public class MenuController : MonoBehaviour
         allMenus.Add(mainMenu);
         allMenus.Add(controlsMenu);
         allMenus.Add(gameSettings);
+        allMenus.Add(gameOverScreen);
+        allMenus.Add(loadingScreen);
     }
 
     void DisplayCanvas (Canvas canvas)
@@ -117,6 +137,12 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    IEnumerator DisplayGameOver ()
+    {
+        yield return new WaitForSeconds(retryMenuDelay);
+        DisplayCanvas(gameOverScreen);
+    }
+
     IEnumerator LoadLevel (int levelBuildIndex)
     {
         this.enabled = false;
@@ -128,7 +154,8 @@ public class MenuController : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(levelBuildIndex));
         loadedLevelBuildIndex = levelBuildIndex;
         menuCamera.gameObject.SetActive(false);
-        this.enabled = true;
         SetGameParameters();
+        HideAllMenus();
+        this.enabled = true;
     }
 }
