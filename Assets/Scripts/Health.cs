@@ -12,6 +12,7 @@ public class Health : MonoBehaviour, IDamageable
     Rigidbody body;
     CapsuleCollider coll;
     NavMeshAgent agent;
+    NavMeshObstacle obstace;
     bool isAlive = true;
 
     public void TakeDamage(int damage)
@@ -42,11 +43,13 @@ public class Health : MonoBehaviour, IDamageable
         body = GetComponent<Rigidbody>();
         coll = GetComponent<CapsuleCollider>();
         agent = GetComponent<NavMeshAgent>();
+        obstace = GetComponent<NavMeshObstacle>();
     }
 
     IEnumerator Kill ()
     {
         // TODO: Move to FixedUpdate as physics are not behaving correctly at low frame rates
+        // Also, adding/destroying rigid bodies and colliders at runtime is slow 
         yield return new WaitForFixedUpdate();
 
         if ((timeUntilFade > 0 && fadeTime > 0) || (body != null && coll != null))
@@ -58,6 +61,10 @@ public class Health : MonoBehaviour, IDamageable
 
             Destroy(body);
             Destroy(coll);
+            if (obstace != null)
+            {
+                Destroy(obstace);
+            }
 
             allParts = GetComponentsInChildren<Transform>();
             foreach (var item in allParts)

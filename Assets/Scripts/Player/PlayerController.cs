@@ -97,11 +97,11 @@ public class PlayerController : MonoBehaviour
                 transform.forward = viewRotation * inputs;
             }
 
-            if (Input.GetButtonDown("Jump") && isGrounded && !EventSystem.current.IsPointerOverGameObject())
-            {
-                body.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
-                isGrounded = false;
-            }
+            //if (Input.GetButtonDown("Jump") && isGrounded && !EventSystem.current.IsPointerOverGameObject())
+            //{
+            //    body.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+            //    isGrounded = false;
+            //}
 
             if (Input.GetButtonDown("Next Item") || Input.GetAxis("Mouse ScrollWheel") > 0f && !EventSystem.current.IsPointerOverGameObject())
             {
