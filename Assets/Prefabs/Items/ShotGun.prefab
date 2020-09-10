@@ -180,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a050b3501fabd294c829ea1e588312e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 0
-  clip: 0
+  ammo: 60
+  clip: 2
   reloadTime: 1
   ammoType: 2
   maxAmmo: 60
@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74c82e79575f6f4fbf116f5a113e836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 2
-  strength: 5
+  mode: 1
+  strength: 30
 --- !u!114 &3565771656928409901
 MonoBehaviour:
   m_ObjectHideFlags: 0
