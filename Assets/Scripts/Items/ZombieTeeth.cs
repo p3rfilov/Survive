@@ -43,7 +43,6 @@ public class ZombieTeeth : Weapon
                     int damage = damageCalculator.CalculateRandomDamage();
                     damageable.TakeDamage(damage);
                 }
-
                 forceApplier.ApplyForce(hit, dir);
             }
         }

@@ -10,9 +10,9 @@ public class Health : MonoBehaviour, IDamageable
     public bool allowDrops;
 
     Rigidbody body;
-    CapsuleCollider coll;
+    Collider coll;
     NavMeshAgent agent;
-    NavMeshObstacle obstace;
+    float mass;
     bool isAlive = true;
 
     public void TakeDamage(int damage)
@@ -24,10 +24,9 @@ public class Health : MonoBehaviour, IDamageable
         }
         if (health <= 0)
         {
-            if (agent != null && body != null)
+            if (agent != null)
             {
                 agent.enabled = false;
-                body.isKinematic = false;
             }
             if (isAlive)
             {
@@ -41,26 +40,24 @@ public class Health : MonoBehaviour, IDamageable
     void Start()
     {
         body = GetComponent<Rigidbody>();
-        coll = GetComponent<CapsuleCollider>();
+        coll = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
-        obstace = GetComponent<NavMeshObstacle>();
+        if (body != null)
+        {
+            mass = body.mass;
+        }
     }
 
     void Segment ()
     {
         if ((timeUntilFade > 0 && fadeTime > 0) || (body != null && coll != null))
         {
-            Transform[] allParts;
-            float mass = body.mass;
-
+            body.detectCollisions = false;
+            coll.enabled = false;
             Destroy(body);
             Destroy(coll);
-            if (obstace != null)
-            {
-                Destroy(obstace);
-            }
 
-            allParts = GetComponentsInChildren<Transform>();
+            Transform[] allParts = GetComponentsInChildren<Transform>();
             foreach (var item in allParts)
             {
                 Renderer rend = item.GetComponent<Renderer>();

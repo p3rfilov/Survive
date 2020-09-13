@@ -34,15 +34,16 @@ public class Exploder : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider hit in colliders)
             {
-                if (hit.GetComponent<Projectile>() == null)
+                if (hit != null && hit.GetComponent<Projectile>() == null)
                 {
+                    Transform trans = hit.transform;
                     var damageable = hit.GetComponent<IDamageable>();
                     if (damageable != null)
                     {
                         int damage = damageCalculator.CalculateRandomDamage();
                         damageable.TakeDamage(damage);
                     }
-                    StartCoroutine(_AddExplosionForce(hit.transform, force, explosionPos, radius, lift));
+                    StartCoroutine(_AddExplosionForce(trans, force, explosionPos, radius, lift));
                 }
             }
 
@@ -62,7 +63,7 @@ public class Exploder : MonoBehaviour
         if (hit != null)
         {
             Rigidbody body = hit.GetComponent<Rigidbody>();
-            if (body != null)
+            if (body != null && body.detectCollisions)
             {
                 body.AddExplosionForce(force, pos, radius, upVector);
             }
@@ -73,7 +74,7 @@ public class Exploder : MonoBehaviour
                 {
                     if (item != null)
                     {
-                        body.AddExplosionForce(force, pos, radius, upVector);
+                        item.AddExplosionForce(force, pos, radius, upVector);
                     }
                 }
             }
