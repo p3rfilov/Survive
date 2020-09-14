@@ -113,10 +113,10 @@ public class PlayerController : MonoBehaviour
                 itemHolder.CicleItems(-1);
             }
 
-            if (Input.GetButtonDown("Drop Item") && !EventSystem.current.IsPointerOverGameObject())
-            {
-                itemHolder.DropCurrentItem();
-            }
+            //if (Input.GetButtonDown("Drop Item") && !EventSystem.current.IsPointerOverGameObject())
+            //{
+            //    itemHolder.DropCurrentItem();
+            //}
 
             if (Input.GetButton("Fire1") && !EventSystem.current.IsPointerOverGameObject())
             {
