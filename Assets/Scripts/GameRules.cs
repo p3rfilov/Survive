@@ -95,6 +95,13 @@ public class GameRules : MonoBehaviour
         }
     }
 
+    private void OnDestroy ()
+    {
+        EventManager.OnSomethingDied -= DropItemAndDecrementEnemyCount;
+        EventManager.OnGameRulesChanged -= ChangeGameRules;
+        EventManager.OnObjectAboutToBeDestroyed -= RunBulletTime;
+    }
+
     void DropItemAndDecrementEnemyCount (Transform obj)
     {
         if (obj != null)
